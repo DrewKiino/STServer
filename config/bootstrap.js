@@ -27,16 +27,6 @@ module.exports.bootstrap = function(cb) {
   .then(sails.services.mongoosemongo.connectMongooseToMongo)
   .then(sails.services.mongoosemongo.bindMongooseToModels)
   /**
-   * setup kue for background jobs
-   * 
-   * NOTE: it seems that kue struggles with http loading
-   * although its ui and api usage is very intuitive, the performance
-   * doesn't reach the levels of reque, kind of disappointed. perhaps, I am
-   * implementing it wrong. But I still like this api so I will try to find
-   * other uses for it.
-   */
-  // .then(setupKue)
-    /**
    * setup resque for background jbos
    *
    * NOTE: the api is kind of clunky but this handles reliable job execution
@@ -62,6 +52,9 @@ module.exports.bootstrap = function(cb) {
 }
 
 function preSetup() {
+
+  // load environment variables
+  require('dotenv').load()
 
 	sails.log.info('environment\t=>\t(' + process.env.NODE_ENV + ')')
 
@@ -95,6 +88,14 @@ function preSetup() {
 }
 
 function postSetup() {
+
+  // this code is ran once because the first connection is coming
+  // from the server itself.
+  setTimeout( () => {
+    require('cli-clear')()
+    sails.log.info('Hello, World.')
+  }, 500)
+
   return require('bluebird').resolve()
 }
 

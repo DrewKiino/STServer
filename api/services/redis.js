@@ -9,9 +9,9 @@ export function connect() {
 
   const is = require('is_js')
 
-  if (is.not.undefined(process.env.REDISTOGO_URL)) {
+  if (is.existy(process.env.REDISTOGO_URL)) {
 
-    const rtg   = require('url').parse(process.env.REDISTOGO_URL)
+    const rtg = require('url').parse(process.env.REDISTOGO_URL)
 
     const client = redis.createClient(rtg.port, rtg.hostname)
     client.on('error', sails.dlogerror)
@@ -24,7 +24,6 @@ export function connect() {
     client2.auth(rtg.auth.split(':')[1])
     client2.on('error', sails.dlogerror)
     client2.send_command('CLIENT', ['SETNAME', name])
-    client2.setMaxListeners(0)
     sails.REDIS_SUB = client2
 
     const client3 = require('redis').createClient(rtg.port, rtg.hostname)
@@ -32,6 +31,7 @@ export function connect() {
     client3.auth(rtg.auth.split(':')[1])
     client3.send_command('CLIENT', ['SETNAME', name])
     sails.REDIS_QUEUE = client
+
 
     sails.log.info(
       'redis server\t=>\t(connected)\t' + process.env.REDISTOGO_URL
@@ -48,7 +48,7 @@ export function connect() {
     const client2 = redis.createClient()
     client2.on('error', sails.dlogerror)
     client2.send_command('CLIENT', ['SETNAME', name])
-    client2.setMaxListeners(0)
+    client2.setMaxListeners(1)
     sails.REDIS_SUB = client2
 
     const client3 = redis.createClient()
@@ -66,16 +66,4 @@ export function connect() {
 // redis-cli -h tarpon.redistogo.com -p 11655 -a 48ac348ee1bbc98c9d9995f82726213f flushall
 
 export function setup(socket) {
-
-  const sub = sails.REDIS_SUB
-
-  sub.subscribe('/user/find')
-
-  sub.on('message', (channel, message) => {
-    const data = JSON.parse(message)
-    switch (channel) {
-      case '/user/find': sails.controllers.user.redisPubFindOne(data)
-      default: return
-    }
-  })
 }

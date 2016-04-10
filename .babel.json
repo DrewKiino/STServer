@@ -1,0 +1,1482 @@
+{
+  "{\"filename\":\"/Users/drewkiino/STServer/api/responses/badRequest.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/responses/badRequest.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/responses/badRequest.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "badRequest.js",
+      "sourceFileName": "badRequest.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "badRequest"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * 400 (Bad Request) Handler\n *\n * Usage:\n * return res.badRequest();\n * return res.badRequest(data);\n * return res.badRequest(data, 'some/specific/badRequest/view');\n *\n * e.g.:\n * ```\n * return res.badRequest(\n *   'Please choose a valid `password` (6-12 characters)',\n *   'trial/signup'\n * );\n * ```\n */\n\nmodule.exports = function badRequest(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(400);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 400 (\"Bad Request\") response: \\n', data);\n  } else sails.log.verbose('Sending 400 (\"Bad Request\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = typeof options === 'string' ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the implied view,\n  // but fall back to sending JSON(P) if no view can be inferred.\n  else return res.guessView({ data: data }, function couldNotGuessView() {\n      return res.jsonx(data);\n    });\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJhZFJlcXVlc3QuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQWlCQSxPQUFPLE9BQVAsR0FBaUIsU0FBUyxVQUFULENBQW9CLElBQXBCLEVBQTBCLE9BQTFCLEVBQW1DOzs7QUFHbEQsTUFBSSxNQUFNLEtBQUssR0FBTCxDQUh3QztBQUlsRCxNQUFJLE1BQU0sS0FBSyxHQUFMLENBSndDO0FBS2xELE1BQUksUUFBUSxJQUFJLE1BQUo7OztBQUxzQyxLQVFsRCxDQUFJLE1BQUosQ0FBVyxHQUFYOzs7QUFSa0QsTUFXOUMsU0FBUyxTQUFULEVBQW9CO0FBQ3RCLFVBQU0sR0FBTixDQUFVLE9BQVYsQ0FBa0IsMENBQWxCLEVBQTZELElBQTdELEVBRHNCO0dBQXhCLE1BR0ssTUFBTSxHQUFOLENBQVUsT0FBVixDQUFrQixzQ0FBbEIsRUFITDs7Ozs7QUFYa0QsTUFtQjlDLE1BQU0sTUFBTixDQUFhLFdBQWIsS0FBNkIsWUFBN0IsRUFBMkM7QUFDN0MsV0FBTyxTQUFQLENBRDZDO0dBQS9DOzs7QUFuQmtELE1Bd0I5QyxJQUFJLFNBQUosRUFBZTtBQUNqQixXQUFPLElBQUksS0FBSixDQUFVLElBQVYsQ0FBUCxDQURpQjtHQUFuQjs7OztBQXhCa0QsU0E4QmxELEdBQVUsT0FBUSxPQUFQLEtBQW1CLFFBQW5CLEdBQStCLEVBQUUsTUFBTSxPQUFOLEVBQWxDLEdBQW9ELFdBQVcsRUFBWDs7Ozs7QUE5QlosTUFtQzlDLFFBQVEsSUFBUixFQUFjO0FBQ2hCLFdBQU8sSUFBSSxJQUFKLENBQVMsUUFBUSxJQUFSLEVBQWMsRUFBRSxNQUFNLElBQU4sRUFBekIsQ0FBUCxDQURnQjs7Ozs7QUFBbEIsT0FNSyxPQUFPLElBQUksU0FBSixDQUFjLEVBQUUsTUFBTSxJQUFOLEVBQWhCLEVBQThCLFNBQVMsaUJBQVQsR0FBOEI7QUFDdEUsYUFBTyxJQUFJLEtBQUosQ0FBVSxJQUFWLENBQVAsQ0FEc0U7S0FBOUIsQ0FBckMsQ0FOTDtDQW5DZSIsImZpbGUiOiJiYWRSZXF1ZXN0LmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiA0MDAgKEJhZCBSZXF1ZXN0KSBIYW5kbGVyXG4gKlxuICogVXNhZ2U6XG4gKiByZXR1cm4gcmVzLmJhZFJlcXVlc3QoKTtcbiAqIHJldHVybiByZXMuYmFkUmVxdWVzdChkYXRhKTtcbiAqIHJldHVybiByZXMuYmFkUmVxdWVzdChkYXRhLCAnc29tZS9zcGVjaWZpYy9iYWRSZXF1ZXN0L3ZpZXcnKTtcbiAqXG4gKiBlLmcuOlxuICogYGBgXG4gKiByZXR1cm4gcmVzLmJhZFJlcXVlc3QoXG4gKiAgICdQbGVhc2UgY2hvb3NlIGEgdmFsaWQgYHBhc3N3b3JkYCAoNi0xMiBjaGFyYWN0ZXJzKScsXG4gKiAgICd0cmlhbC9zaWdudXAnXG4gKiApO1xuICogYGBgXG4gKi9cblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBiYWRSZXF1ZXN0KGRhdGEsIG9wdGlvbnMpIHtcblxuICAvLyBHZXQgYWNjZXNzIHRvIGByZXFgLCBgcmVzYCwgJiBgc2FpbHNgXG4gIHZhciByZXEgPSB0aGlzLnJlcTtcbiAgdmFyIHJlcyA9IHRoaXMucmVzO1xuICB2YXIgc2FpbHMgPSByZXEuX3NhaWxzO1xuXG4gIC8vIFNldCBzdGF0dXMgY29kZVxuICByZXMuc3RhdHVzKDQwMCk7XG5cbiAgLy8gTG9nIGVycm9yIHRvIGNvbnNvbGVcbiAgaWYgKGRhdGEgIT09IHVuZGVmaW5lZCkge1xuICAgIHNhaWxzLmxvZy52ZXJib3NlKCdTZW5kaW5nIDQwMCAoXCJCYWQgUmVxdWVzdFwiKSByZXNwb25zZTogXFxuJyxkYXRhKTtcbiAgfVxuICBlbHNlIHNhaWxzLmxvZy52ZXJib3NlKCdTZW5kaW5nIDQwMCAoXCJCYWQgUmVxdWVzdFwiKSByZXNwb25zZScpO1xuXG4gIC8vIE9ubHkgaW5jbHVkZSBlcnJvcnMgaW4gcmVzcG9uc2UgaWYgYXBwbGljYXRpb24gZW52aXJvbm1lbnRcbiAgLy8gaXMgbm90IHNldCB0byAncHJvZHVjdGlvbicuICBJbiBwcm9kdWN0aW9uLCB3ZSBzaG91bGRuJ3RcbiAgLy8gc2VuZCBiYWNrIGFueSBpZGVudGlmeWluZyBpbmZvcm1hdGlvbiBhYm91dCBlcnJvcnMuXG4gIGlmIChzYWlscy5jb25maWcuZW52aXJvbm1lbnQgPT09ICdwcm9kdWN0aW9uJykge1xuICAgIGRhdGEgPSB1bmRlZmluZWQ7XG4gIH1cblxuICAvLyBJZiB0aGUgdXNlci1hZ2VudCB3YW50cyBKU09OLCBhbHdheXMgcmVzcG9uZCB3aXRoIEpTT05cbiAgaWYgKHJlcS53YW50c0pTT04pIHtcbiAgICByZXR1cm4gcmVzLmpzb254KGRhdGEpO1xuICB9XG5cbiAgLy8gSWYgc2Vjb25kIGFyZ3VtZW50IGlzIGEgc3RyaW5nLCB3ZSB0YWtlIHRoYXQgdG8gbWVhbiBpdCByZWZlcnMgdG8gYSB2aWV3LlxuICAvLyBJZiBpdCB3YXMgb21pdHRlZCwgdXNlIGFuIGVtcHR5IG9iamVjdCAoYHt9YClcbiAgb3B0aW9ucyA9ICh0eXBlb2Ygb3B0aW9ucyA9PT0gJ3N0cmluZycpID8geyB2aWV3OiBvcHRpb25zIH0gOiBvcHRpb25zIHx8IHt9O1xuXG4gIC8vIElmIGEgdmlldyB3YXMgcHJvdmlkZWQgaW4gb3B0aW9ucywgc2VydmUgaXQuXG4gIC8vIE90aGVyd2lzZSB0cnkgdG8gZ3Vlc3MgYW4gYXBwcm9wcmlhdGUgdmlldywgb3IgaWYgdGhhdCBkb2Vzbid0XG4gIC8vIHdvcmssIGp1c3Qgc2VuZCBKU09OLlxuICBpZiAob3B0aW9ucy52aWV3KSB7XG4gICAgcmV0dXJuIHJlcy52aWV3KG9wdGlvbnMudmlldywgeyBkYXRhOiBkYXRhIH0pO1xuICB9XG5cbiAgLy8gSWYgbm8gc2Vjb25kIGFyZ3VtZW50IHByb3ZpZGVkLCB0cnkgdG8gc2VydmUgdGhlIGltcGxpZWQgdmlldyxcbiAgLy8gYnV0IGZhbGwgYmFjayB0byBzZW5kaW5nIEpTT04oUCkgaWYgbm8gdmlldyBjYW4gYmUgaW5mZXJyZWQuXG4gIGVsc2UgcmV0dXJuIHJlcy5ndWVzc1ZpZXcoeyBkYXRhOiBkYXRhIH0sIGZ1bmN0aW9uIGNvdWxkTm90R3Vlc3NWaWV3ICgpIHtcbiAgICByZXR1cm4gcmVzLmpzb254KGRhdGEpO1xuICB9KTtcblxufTtcblxuIl19",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "badRequest.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;;;;;;;;;AAiBA,OAAO,OAAP,GAAiB,SAAS,UAAT,CAAoB,IAApB,EAA0B,OAA1B,EAAmC;;;AAGlD,MAAI,MAAM,KAAK,GAAL,CAHwC;AAIlD,MAAI,MAAM,KAAK,GAAL,CAJwC;AAKlD,MAAI,QAAQ,IAAI,MAAJ;;;AALsC,KAQlD,CAAI,MAAJ,CAAW,GAAX;;;AARkD,MAW9C,SAAS,SAAT,EAAoB;AACtB,UAAM,GAAN,CAAU,OAAV,CAAkB,0CAAlB,EAA6D,IAA7D,EADsB;GAAxB,MAGK,MAAM,GAAN,CAAU,OAAV,CAAkB,sCAAlB,EAHL;;;;;AAXkD,MAmB9C,MAAM,MAAN,CAAa,WAAb,KAA6B,YAA7B,EAA2C;AAC7C,WAAO,SAAP,CAD6C;GAA/C;;;AAnBkD,MAwB9C,IAAI,SAAJ,EAAe;AACjB,WAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADiB;GAAnB;;;;AAxBkD,SA8BlD,GAAU,OAAQ,OAAP,KAAmB,QAAnB,GAA+B,EAAE,MAAM,OAAN,EAAlC,GAAoD,WAAW,EAAX;;;;;AA9BZ,MAmC9C,QAAQ,IAAR,EAAc;AAChB,WAAO,IAAI,IAAJ,CAAS,QAAQ,IAAR,EAAc,EAAE,MAAM,IAAN,EAAzB,CAAP,CADgB;;;;;AAAlB,OAMK,OAAO,IAAI,SAAJ,CAAc,EAAE,MAAM,IAAN,EAAhB,EAA8B,SAAS,iBAAT,GAA8B;AACtE,aAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADsE;KAA9B,CAArC,CANL;CAnCe",
+      "file": "badRequest.js",
+      "sourcesContent": [
+        "/**\n * 400 (Bad Request) Handler\n *\n * Usage:\n * return res.badRequest();\n * return res.badRequest(data);\n * return res.badRequest(data, 'some/specific/badRequest/view');\n *\n * e.g.:\n * ```\n * return res.badRequest(\n *   'Please choose a valid `password` (6-12 characters)',\n *   'trial/signup'\n * );\n * ```\n */\n\nmodule.exports = function badRequest(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(400);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 400 (\"Bad Request\") response: \\n',data);\n  }\n  else sails.log.verbose('Sending 400 (\"Bad Request\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = (typeof options === 'string') ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the implied view,\n  // but fall back to sending JSON(P) if no view can be inferred.\n  else return res.guessView({ data: data }, function couldNotGuessView () {\n    return res.jsonx(data);\n  });\n\n};\n\n"
+      ]
+    },
+    "mtime": 1449261422000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/responses/forbidden.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/responses/forbidden.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/responses/forbidden.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "forbidden.js",
+      "sourceFileName": "forbidden.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "forbidden"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * 403 (Forbidden) Handler\n *\n * Usage:\n * return res.forbidden();\n * return res.forbidden(err);\n * return res.forbidden(err, 'some/specific/forbidden/view');\n *\n * e.g.:\n * ```\n * return res.forbidden('Access denied.');\n * ```\n */\n\nmodule.exports = function forbidden(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(403);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 403 (\"Forbidden\") response: \\n', data);\n  } else sails.log.verbose('Sending 403 (\"Forbidden\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = typeof options === 'string' ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('403', { data: data }, function (err, html) {\n\n      // If a view error occured, fall back to JSON(P).\n      if (err) {\n        //\n        // Additionally:\n        // • If the view was missing, ignore the error but provide a verbose log.\n        if (err.code === 'E_VIEW_FAILED') {\n          sails.log.verbose('res.forbidden() :: Could not locate view for error page (sending JSON instead).  Details: ', err);\n        }\n        // Otherwise, if this was a more serious error, log to the console with the details.\n        else {\n            sails.log.warn('res.forbidden() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n          }\n        return res.jsonx(data);\n      }\n\n      return res.send(html);\n    });\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvcmJpZGRlbi5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7O0FBY0EsT0FBTyxPQUFQLEdBQWlCLFNBQVMsU0FBVCxDQUFvQixJQUFwQixFQUEwQixPQUExQixFQUFtQzs7O0FBR2xELE1BQUksTUFBTSxLQUFLLEdBQUwsQ0FId0M7QUFJbEQsTUFBSSxNQUFNLEtBQUssR0FBTCxDQUp3QztBQUtsRCxNQUFJLFFBQVEsSUFBSSxNQUFKOzs7QUFMc0MsS0FRbEQsQ0FBSSxNQUFKLENBQVcsR0FBWDs7O0FBUmtELE1BVzlDLFNBQVMsU0FBVCxFQUFvQjtBQUN0QixVQUFNLEdBQU4sQ0FBVSxPQUFWLENBQWtCLHdDQUFsQixFQUEyRCxJQUEzRCxFQURzQjtHQUF4QixNQUdLLE1BQU0sR0FBTixDQUFVLE9BQVYsQ0FBa0Isb0NBQWxCLEVBSEw7Ozs7O0FBWGtELE1BbUI5QyxNQUFNLE1BQU4sQ0FBYSxXQUFiLEtBQTZCLFlBQTdCLEVBQTJDO0FBQzdDLFdBQU8sU0FBUCxDQUQ2QztHQUEvQzs7O0FBbkJrRCxNQXdCOUMsSUFBSSxTQUFKLEVBQWU7QUFDakIsV0FBTyxJQUFJLEtBQUosQ0FBVSxJQUFWLENBQVAsQ0FEaUI7R0FBbkI7Ozs7QUF4QmtELFNBOEJsRCxHQUFVLE9BQVEsT0FBUCxLQUFtQixRQUFuQixHQUErQixFQUFFLE1BQU0sT0FBTixFQUFsQyxHQUFvRCxXQUFXLEVBQVg7Ozs7O0FBOUJaLE1BbUM5QyxRQUFRLElBQVIsRUFBYztBQUNoQixXQUFPLElBQUksSUFBSixDQUFTLFFBQVEsSUFBUixFQUFjLEVBQUUsTUFBTSxJQUFOLEVBQXpCLENBQVAsQ0FEZ0I7Ozs7O0FBQWxCLE9BTUssT0FBTyxJQUFJLElBQUosQ0FBUyxLQUFULEVBQWdCLEVBQUUsTUFBTSxJQUFOLEVBQWxCLEVBQWdDLFVBQVUsR0FBVixFQUFlLElBQWYsRUFBcUI7OztBQUcvRCxVQUFJLEdBQUosRUFBUzs7OztBQUlQLFlBQUksSUFBSSxJQUFKLEtBQWEsZUFBYixFQUE4QjtBQUNoQyxnQkFBTSxHQUFOLENBQVUsT0FBVixDQUFrQiw0RkFBbEIsRUFBK0csR0FBL0csRUFEZ0M7OztBQUFsQyxhQUlLO0FBQ0gsa0JBQU0sR0FBTixDQUFVLElBQVYsQ0FBZSxtSEFBZixFQUFvSSxHQUFwSSxFQURHO1dBSkw7QUFPQSxlQUFPLElBQUksS0FBSixDQUFVLElBQVYsQ0FBUCxDQVhPO09BQVQ7O0FBY0EsYUFBTyxJQUFJLElBQUosQ0FBUyxJQUFULENBQVAsQ0FqQitEO0tBQXJCLENBQXZDLENBTkw7Q0FuQ2UiLCJmaWxlIjoiZm9yYmlkZGVuLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiA0MDMgKEZvcmJpZGRlbikgSGFuZGxlclxuICpcbiAqIFVzYWdlOlxuICogcmV0dXJuIHJlcy5mb3JiaWRkZW4oKTtcbiAqIHJldHVybiByZXMuZm9yYmlkZGVuKGVycik7XG4gKiByZXR1cm4gcmVzLmZvcmJpZGRlbihlcnIsICdzb21lL3NwZWNpZmljL2ZvcmJpZGRlbi92aWV3Jyk7XG4gKlxuICogZS5nLjpcbiAqIGBgYFxuICogcmV0dXJuIHJlcy5mb3JiaWRkZW4oJ0FjY2VzcyBkZW5pZWQuJyk7XG4gKiBgYGBcbiAqL1xuXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uIGZvcmJpZGRlbiAoZGF0YSwgb3B0aW9ucykge1xuXG4gIC8vIEdldCBhY2Nlc3MgdG8gYHJlcWAsIGByZXNgLCAmIGBzYWlsc2BcbiAgdmFyIHJlcSA9IHRoaXMucmVxO1xuICB2YXIgcmVzID0gdGhpcy5yZXM7XG4gIHZhciBzYWlscyA9IHJlcS5fc2FpbHM7XG5cbiAgLy8gU2V0IHN0YXR1cyBjb2RlXG4gIHJlcy5zdGF0dXMoNDAzKTtcblxuICAvLyBMb2cgZXJyb3IgdG8gY29uc29sZVxuICBpZiAoZGF0YSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgc2FpbHMubG9nLnZlcmJvc2UoJ1NlbmRpbmcgNDAzIChcIkZvcmJpZGRlblwiKSByZXNwb25zZTogXFxuJyxkYXRhKTtcbiAgfVxuICBlbHNlIHNhaWxzLmxvZy52ZXJib3NlKCdTZW5kaW5nIDQwMyAoXCJGb3JiaWRkZW5cIikgcmVzcG9uc2UnKTtcblxuICAvLyBPbmx5IGluY2x1ZGUgZXJyb3JzIGluIHJlc3BvbnNlIGlmIGFwcGxpY2F0aW9uIGVudmlyb25tZW50XG4gIC8vIGlzIG5vdCBzZXQgdG8gJ3Byb2R1Y3Rpb24nLiAgSW4gcHJvZHVjdGlvbiwgd2Ugc2hvdWxkbid0XG4gIC8vIHNlbmQgYmFjayBhbnkgaWRlbnRpZnlpbmcgaW5mb3JtYXRpb24gYWJvdXQgZXJyb3JzLlxuICBpZiAoc2FpbHMuY29uZmlnLmVudmlyb25tZW50ID09PSAncHJvZHVjdGlvbicpIHtcbiAgICBkYXRhID0gdW5kZWZpbmVkO1xuICB9XG5cbiAgLy8gSWYgdGhlIHVzZXItYWdlbnQgd2FudHMgSlNPTiwgYWx3YXlzIHJlc3BvbmQgd2l0aCBKU09OXG4gIGlmIChyZXEud2FudHNKU09OKSB7XG4gICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgfVxuXG4gIC8vIElmIHNlY29uZCBhcmd1bWVudCBpcyBhIHN0cmluZywgd2UgdGFrZSB0aGF0IHRvIG1lYW4gaXQgcmVmZXJzIHRvIGEgdmlldy5cbiAgLy8gSWYgaXQgd2FzIG9taXR0ZWQsIHVzZSBhbiBlbXB0eSBvYmplY3QgKGB7fWApXG4gIG9wdGlvbnMgPSAodHlwZW9mIG9wdGlvbnMgPT09ICdzdHJpbmcnKSA/IHsgdmlldzogb3B0aW9ucyB9IDogb3B0aW9ucyB8fCB7fTtcblxuICAvLyBJZiBhIHZpZXcgd2FzIHByb3ZpZGVkIGluIG9wdGlvbnMsIHNlcnZlIGl0LlxuICAvLyBPdGhlcndpc2UgdHJ5IHRvIGd1ZXNzIGFuIGFwcHJvcHJpYXRlIHZpZXcsIG9yIGlmIHRoYXQgZG9lc24ndFxuICAvLyB3b3JrLCBqdXN0IHNlbmQgSlNPTi5cbiAgaWYgKG9wdGlvbnMudmlldykge1xuICAgIHJldHVybiByZXMudmlldyhvcHRpb25zLnZpZXcsIHsgZGF0YTogZGF0YSB9KTtcbiAgfVxuXG4gIC8vIElmIG5vIHNlY29uZCBhcmd1bWVudCBwcm92aWRlZCwgdHJ5IHRvIHNlcnZlIHRoZSBkZWZhdWx0IHZpZXcsXG4gIC8vIGJ1dCBmYWxsIGJhY2sgdG8gc2VuZGluZyBKU09OKFApIGlmIGFueSBlcnJvcnMgb2NjdXIuXG4gIGVsc2UgcmV0dXJuIHJlcy52aWV3KCc0MDMnLCB7IGRhdGE6IGRhdGEgfSwgZnVuY3Rpb24gKGVyciwgaHRtbCkge1xuXG4gICAgLy8gSWYgYSB2aWV3IGVycm9yIG9jY3VyZWQsIGZhbGwgYmFjayB0byBKU09OKFApLlxuICAgIGlmIChlcnIpIHtcbiAgICAgIC8vXG4gICAgICAvLyBBZGRpdGlvbmFsbHk6XG4gICAgICAvLyDigKIgSWYgdGhlIHZpZXcgd2FzIG1pc3NpbmcsIGlnbm9yZSB0aGUgZXJyb3IgYnV0IHByb3ZpZGUgYSB2ZXJib3NlIGxvZy5cbiAgICAgIGlmIChlcnIuY29kZSA9PT0gJ0VfVklFV19GQUlMRUQnKSB7XG4gICAgICAgIHNhaWxzLmxvZy52ZXJib3NlKCdyZXMuZm9yYmlkZGVuKCkgOjogQ291bGQgbm90IGxvY2F0ZSB2aWV3IGZvciBlcnJvciBwYWdlIChzZW5kaW5nIEpTT04gaW5zdGVhZCkuICBEZXRhaWxzOiAnLGVycik7XG4gICAgICB9XG4gICAgICAvLyBPdGhlcndpc2UsIGlmIHRoaXMgd2FzIGEgbW9yZSBzZXJpb3VzIGVycm9yLCBsb2cgdG8gdGhlIGNvbnNvbGUgd2l0aCB0aGUgZGV0YWlscy5cbiAgICAgIGVsc2Uge1xuICAgICAgICBzYWlscy5sb2cud2FybigncmVzLmZvcmJpZGRlbigpIDo6IFdoZW4gYXR0ZW1wdGluZyB0byByZW5kZXIgZXJyb3IgcGFnZSB2aWV3LCBhbiBlcnJvciBvY2N1cmVkIChzZW5kaW5nIEpTT04gaW5zdGVhZCkuICBEZXRhaWxzOiAnLCBlcnIpO1xuICAgICAgfVxuICAgICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgICB9XG5cbiAgICByZXR1cm4gcmVzLnNlbmQoaHRtbCk7XG4gIH0pO1xuXG59O1xuXG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "forbidden.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;;;;;;AAcA,OAAO,OAAP,GAAiB,SAAS,SAAT,CAAoB,IAApB,EAA0B,OAA1B,EAAmC;;;AAGlD,MAAI,MAAM,KAAK,GAAL,CAHwC;AAIlD,MAAI,MAAM,KAAK,GAAL,CAJwC;AAKlD,MAAI,QAAQ,IAAI,MAAJ;;;AALsC,KAQlD,CAAI,MAAJ,CAAW,GAAX;;;AARkD,MAW9C,SAAS,SAAT,EAAoB;AACtB,UAAM,GAAN,CAAU,OAAV,CAAkB,wCAAlB,EAA2D,IAA3D,EADsB;GAAxB,MAGK,MAAM,GAAN,CAAU,OAAV,CAAkB,oCAAlB,EAHL;;;;;AAXkD,MAmB9C,MAAM,MAAN,CAAa,WAAb,KAA6B,YAA7B,EAA2C;AAC7C,WAAO,SAAP,CAD6C;GAA/C;;;AAnBkD,MAwB9C,IAAI,SAAJ,EAAe;AACjB,WAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADiB;GAAnB;;;;AAxBkD,SA8BlD,GAAU,OAAQ,OAAP,KAAmB,QAAnB,GAA+B,EAAE,MAAM,OAAN,EAAlC,GAAoD,WAAW,EAAX;;;;;AA9BZ,MAmC9C,QAAQ,IAAR,EAAc;AAChB,WAAO,IAAI,IAAJ,CAAS,QAAQ,IAAR,EAAc,EAAE,MAAM,IAAN,EAAzB,CAAP,CADgB;;;;;AAAlB,OAMK,OAAO,IAAI,IAAJ,CAAS,KAAT,EAAgB,EAAE,MAAM,IAAN,EAAlB,EAAgC,UAAU,GAAV,EAAe,IAAf,EAAqB;;;AAG/D,UAAI,GAAJ,EAAS;;;;AAIP,YAAI,IAAI,IAAJ,KAAa,eAAb,EAA8B;AAChC,gBAAM,GAAN,CAAU,OAAV,CAAkB,4FAAlB,EAA+G,GAA/G,EADgC;;;AAAlC,aAIK;AACH,kBAAM,GAAN,CAAU,IAAV,CAAe,mHAAf,EAAoI,GAApI,EADG;WAJL;AAOA,eAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CAXO;OAAT;;AAcA,aAAO,IAAI,IAAJ,CAAS,IAAT,CAAP,CAjB+D;KAArB,CAAvC,CANL;CAnCe",
+      "file": "forbidden.js",
+      "sourcesContent": [
+        "/**\n * 403 (Forbidden) Handler\n *\n * Usage:\n * return res.forbidden();\n * return res.forbidden(err);\n * return res.forbidden(err, 'some/specific/forbidden/view');\n *\n * e.g.:\n * ```\n * return res.forbidden('Access denied.');\n * ```\n */\n\nmodule.exports = function forbidden (data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(403);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 403 (\"Forbidden\") response: \\n',data);\n  }\n  else sails.log.verbose('Sending 403 (\"Forbidden\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = (typeof options === 'string') ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('403', { data: data }, function (err, html) {\n\n    // If a view error occured, fall back to JSON(P).\n    if (err) {\n      //\n      // Additionally:\n      // • If the view was missing, ignore the error but provide a verbose log.\n      if (err.code === 'E_VIEW_FAILED') {\n        sails.log.verbose('res.forbidden() :: Could not locate view for error page (sending JSON instead).  Details: ',err);\n      }\n      // Otherwise, if this was a more serious error, log to the console with the details.\n      else {\n        sails.log.warn('res.forbidden() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n      }\n      return res.jsonx(data);\n    }\n\n    return res.send(html);\n  });\n\n};\n\n"
+      ]
+    },
+    "mtime": 1449261422000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/responses/notFound.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/responses/notFound.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/responses/notFound.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "notFound.js",
+      "sourceFileName": "notFound.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "notFound"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * 404 (Not Found) Handler\n *\n * Usage:\n * return res.notFound();\n * return res.notFound(err);\n * return res.notFound(err, 'some/specific/notfound/view');\n *\n * e.g.:\n * ```\n * return res.notFound();\n * ```\n *\n * NOTE:\n * If a request doesn't match any explicit routes (i.e. `config/routes.js`)\n * or route blueprints (i.e. \"shadow routes\", Sails will call `res.notFound()`\n * automatically.\n */\n\nmodule.exports = function notFound(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(404);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 404 (\"Not Found\") response: \\n', data);\n  } else sails.log.verbose('Sending 404 (\"Not Found\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = typeof options === 'string' ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('404', { data: data }, function (err, html) {\n\n      // If a view error occured, fall back to JSON(P).\n      if (err) {\n        //\n        // Additionally:\n        // • If the view was missing, ignore the error but provide a verbose log.\n        if (err.code === 'E_VIEW_FAILED') {\n          sails.log.verbose('res.notFound() :: Could not locate view for error page (sending JSON instead).  Details: ', err);\n        }\n        // Otherwise, if this was a more serious error, log to the console with the details.\n        else {\n            sails.log.warn('res.notFound() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n          }\n        return res.jsonx(data);\n      }\n\n      return res.send(html);\n    });\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vdEZvdW5kLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQW1CQSxPQUFPLE9BQVAsR0FBaUIsU0FBUyxRQUFULENBQW1CLElBQW5CLEVBQXlCLE9BQXpCLEVBQWtDOzs7QUFHakQsTUFBSSxNQUFNLEtBQUssR0FBTCxDQUh1QztBQUlqRCxNQUFJLE1BQU0sS0FBSyxHQUFMLENBSnVDO0FBS2pELE1BQUksUUFBUSxJQUFJLE1BQUo7OztBQUxxQyxLQVFqRCxDQUFJLE1BQUosQ0FBVyxHQUFYOzs7QUFSaUQsTUFXN0MsU0FBUyxTQUFULEVBQW9CO0FBQ3RCLFVBQU0sR0FBTixDQUFVLE9BQVYsQ0FBa0Isd0NBQWxCLEVBQTJELElBQTNELEVBRHNCO0dBQXhCLE1BR0ssTUFBTSxHQUFOLENBQVUsT0FBVixDQUFrQixvQ0FBbEIsRUFITDs7Ozs7QUFYaUQsTUFtQjdDLE1BQU0sTUFBTixDQUFhLFdBQWIsS0FBNkIsWUFBN0IsRUFBMkM7QUFDN0MsV0FBTyxTQUFQLENBRDZDO0dBQS9DOzs7QUFuQmlELE1Bd0I3QyxJQUFJLFNBQUosRUFBZTtBQUNqQixXQUFPLElBQUksS0FBSixDQUFVLElBQVYsQ0FBUCxDQURpQjtHQUFuQjs7OztBQXhCaUQsU0E4QmpELEdBQVUsT0FBUSxPQUFQLEtBQW1CLFFBQW5CLEdBQStCLEVBQUUsTUFBTSxPQUFOLEVBQWxDLEdBQW9ELFdBQVcsRUFBWDs7Ozs7QUE5QmIsTUFtQzdDLFFBQVEsSUFBUixFQUFjO0FBQ2hCLFdBQU8sSUFBSSxJQUFKLENBQVMsUUFBUSxJQUFSLEVBQWMsRUFBRSxNQUFNLElBQU4sRUFBekIsQ0FBUCxDQURnQjs7Ozs7QUFBbEIsT0FNSyxPQUFPLElBQUksSUFBSixDQUFTLEtBQVQsRUFBZ0IsRUFBRSxNQUFNLElBQU4sRUFBbEIsRUFBZ0MsVUFBVSxHQUFWLEVBQWUsSUFBZixFQUFxQjs7O0FBRy9ELFVBQUksR0FBSixFQUFTOzs7O0FBSVAsWUFBSSxJQUFJLElBQUosS0FBYSxlQUFiLEVBQThCO0FBQ2hDLGdCQUFNLEdBQU4sQ0FBVSxPQUFWLENBQWtCLDJGQUFsQixFQUE4RyxHQUE5RyxFQURnQzs7O0FBQWxDLGFBSUs7QUFDSCxrQkFBTSxHQUFOLENBQVUsSUFBVixDQUFlLGtIQUFmLEVBQW1JLEdBQW5JLEVBREc7V0FKTDtBQU9BLGVBQU8sSUFBSSxLQUFKLENBQVUsSUFBVixDQUFQLENBWE87T0FBVDs7QUFjQSxhQUFPLElBQUksSUFBSixDQUFTLElBQVQsQ0FBUCxDQWpCK0Q7S0FBckIsQ0FBdkMsQ0FOTDtDQW5DZSIsImZpbGUiOiJub3RGb3VuZC5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogNDA0IChOb3QgRm91bmQpIEhhbmRsZXJcbiAqXG4gKiBVc2FnZTpcbiAqIHJldHVybiByZXMubm90Rm91bmQoKTtcbiAqIHJldHVybiByZXMubm90Rm91bmQoZXJyKTtcbiAqIHJldHVybiByZXMubm90Rm91bmQoZXJyLCAnc29tZS9zcGVjaWZpYy9ub3Rmb3VuZC92aWV3Jyk7XG4gKlxuICogZS5nLjpcbiAqIGBgYFxuICogcmV0dXJuIHJlcy5ub3RGb3VuZCgpO1xuICogYGBgXG4gKlxuICogTk9URTpcbiAqIElmIGEgcmVxdWVzdCBkb2Vzbid0IG1hdGNoIGFueSBleHBsaWNpdCByb3V0ZXMgKGkuZS4gYGNvbmZpZy9yb3V0ZXMuanNgKVxuICogb3Igcm91dGUgYmx1ZXByaW50cyAoaS5lLiBcInNoYWRvdyByb3V0ZXNcIiwgU2FpbHMgd2lsbCBjYWxsIGByZXMubm90Rm91bmQoKWBcbiAqIGF1dG9tYXRpY2FsbHkuXG4gKi9cblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBub3RGb3VuZCAoZGF0YSwgb3B0aW9ucykge1xuXG4gIC8vIEdldCBhY2Nlc3MgdG8gYHJlcWAsIGByZXNgLCAmIGBzYWlsc2BcbiAgdmFyIHJlcSA9IHRoaXMucmVxO1xuICB2YXIgcmVzID0gdGhpcy5yZXM7XG4gIHZhciBzYWlscyA9IHJlcS5fc2FpbHM7XG5cbiAgLy8gU2V0IHN0YXR1cyBjb2RlXG4gIHJlcy5zdGF0dXMoNDA0KTtcblxuICAvLyBMb2cgZXJyb3IgdG8gY29uc29sZVxuICBpZiAoZGF0YSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgc2FpbHMubG9nLnZlcmJvc2UoJ1NlbmRpbmcgNDA0IChcIk5vdCBGb3VuZFwiKSByZXNwb25zZTogXFxuJyxkYXRhKTtcbiAgfVxuICBlbHNlIHNhaWxzLmxvZy52ZXJib3NlKCdTZW5kaW5nIDQwNCAoXCJOb3QgRm91bmRcIikgcmVzcG9uc2UnKTtcblxuICAvLyBPbmx5IGluY2x1ZGUgZXJyb3JzIGluIHJlc3BvbnNlIGlmIGFwcGxpY2F0aW9uIGVudmlyb25tZW50XG4gIC8vIGlzIG5vdCBzZXQgdG8gJ3Byb2R1Y3Rpb24nLiAgSW4gcHJvZHVjdGlvbiwgd2Ugc2hvdWxkbid0XG4gIC8vIHNlbmQgYmFjayBhbnkgaWRlbnRpZnlpbmcgaW5mb3JtYXRpb24gYWJvdXQgZXJyb3JzLlxuICBpZiAoc2FpbHMuY29uZmlnLmVudmlyb25tZW50ID09PSAncHJvZHVjdGlvbicpIHtcbiAgICBkYXRhID0gdW5kZWZpbmVkO1xuICB9XG5cbiAgLy8gSWYgdGhlIHVzZXItYWdlbnQgd2FudHMgSlNPTiwgYWx3YXlzIHJlc3BvbmQgd2l0aCBKU09OXG4gIGlmIChyZXEud2FudHNKU09OKSB7XG4gICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgfVxuXG4gIC8vIElmIHNlY29uZCBhcmd1bWVudCBpcyBhIHN0cmluZywgd2UgdGFrZSB0aGF0IHRvIG1lYW4gaXQgcmVmZXJzIHRvIGEgdmlldy5cbiAgLy8gSWYgaXQgd2FzIG9taXR0ZWQsIHVzZSBhbiBlbXB0eSBvYmplY3QgKGB7fWApXG4gIG9wdGlvbnMgPSAodHlwZW9mIG9wdGlvbnMgPT09ICdzdHJpbmcnKSA/IHsgdmlldzogb3B0aW9ucyB9IDogb3B0aW9ucyB8fCB7fTtcblxuICAvLyBJZiBhIHZpZXcgd2FzIHByb3ZpZGVkIGluIG9wdGlvbnMsIHNlcnZlIGl0LlxuICAvLyBPdGhlcndpc2UgdHJ5IHRvIGd1ZXNzIGFuIGFwcHJvcHJpYXRlIHZpZXcsIG9yIGlmIHRoYXQgZG9lc24ndFxuICAvLyB3b3JrLCBqdXN0IHNlbmQgSlNPTi5cbiAgaWYgKG9wdGlvbnMudmlldykge1xuICAgIHJldHVybiByZXMudmlldyhvcHRpb25zLnZpZXcsIHsgZGF0YTogZGF0YSB9KTtcbiAgfVxuXG4gIC8vIElmIG5vIHNlY29uZCBhcmd1bWVudCBwcm92aWRlZCwgdHJ5IHRvIHNlcnZlIHRoZSBkZWZhdWx0IHZpZXcsXG4gIC8vIGJ1dCBmYWxsIGJhY2sgdG8gc2VuZGluZyBKU09OKFApIGlmIGFueSBlcnJvcnMgb2NjdXIuXG4gIGVsc2UgcmV0dXJuIHJlcy52aWV3KCc0MDQnLCB7IGRhdGE6IGRhdGEgfSwgZnVuY3Rpb24gKGVyciwgaHRtbCkge1xuXG4gICAgLy8gSWYgYSB2aWV3IGVycm9yIG9jY3VyZWQsIGZhbGwgYmFjayB0byBKU09OKFApLlxuICAgIGlmIChlcnIpIHtcbiAgICAgIC8vXG4gICAgICAvLyBBZGRpdGlvbmFsbHk6XG4gICAgICAvLyDigKIgSWYgdGhlIHZpZXcgd2FzIG1pc3NpbmcsIGlnbm9yZSB0aGUgZXJyb3IgYnV0IHByb3ZpZGUgYSB2ZXJib3NlIGxvZy5cbiAgICAgIGlmIChlcnIuY29kZSA9PT0gJ0VfVklFV19GQUlMRUQnKSB7XG4gICAgICAgIHNhaWxzLmxvZy52ZXJib3NlKCdyZXMubm90Rm91bmQoKSA6OiBDb3VsZCBub3QgbG9jYXRlIHZpZXcgZm9yIGVycm9yIHBhZ2UgKHNlbmRpbmcgSlNPTiBpbnN0ZWFkKS4gIERldGFpbHM6ICcsZXJyKTtcbiAgICAgIH1cbiAgICAgIC8vIE90aGVyd2lzZSwgaWYgdGhpcyB3YXMgYSBtb3JlIHNlcmlvdXMgZXJyb3IsIGxvZyB0byB0aGUgY29uc29sZSB3aXRoIHRoZSBkZXRhaWxzLlxuICAgICAgZWxzZSB7XG4gICAgICAgIHNhaWxzLmxvZy53YXJuKCdyZXMubm90Rm91bmQoKSA6OiBXaGVuIGF0dGVtcHRpbmcgdG8gcmVuZGVyIGVycm9yIHBhZ2UgdmlldywgYW4gZXJyb3Igb2NjdXJlZCAoc2VuZGluZyBKU09OIGluc3RlYWQpLiAgRGV0YWlsczogJywgZXJyKTtcbiAgICAgIH1cbiAgICAgIHJldHVybiByZXMuanNvbngoZGF0YSk7XG4gICAgfVxuXG4gICAgcmV0dXJuIHJlcy5zZW5kKGh0bWwpO1xuICB9KTtcblxufTtcblxuIl19",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "notFound.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;;;;;;;;;;;AAmBA,OAAO,OAAP,GAAiB,SAAS,QAAT,CAAmB,IAAnB,EAAyB,OAAzB,EAAkC;;;AAGjD,MAAI,MAAM,KAAK,GAAL,CAHuC;AAIjD,MAAI,MAAM,KAAK,GAAL,CAJuC;AAKjD,MAAI,QAAQ,IAAI,MAAJ;;;AALqC,KAQjD,CAAI,MAAJ,CAAW,GAAX;;;AARiD,MAW7C,SAAS,SAAT,EAAoB;AACtB,UAAM,GAAN,CAAU,OAAV,CAAkB,wCAAlB,EAA2D,IAA3D,EADsB;GAAxB,MAGK,MAAM,GAAN,CAAU,OAAV,CAAkB,oCAAlB,EAHL;;;;;AAXiD,MAmB7C,MAAM,MAAN,CAAa,WAAb,KAA6B,YAA7B,EAA2C;AAC7C,WAAO,SAAP,CAD6C;GAA/C;;;AAnBiD,MAwB7C,IAAI,SAAJ,EAAe;AACjB,WAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADiB;GAAnB;;;;AAxBiD,SA8BjD,GAAU,OAAQ,OAAP,KAAmB,QAAnB,GAA+B,EAAE,MAAM,OAAN,EAAlC,GAAoD,WAAW,EAAX;;;;;AA9Bb,MAmC7C,QAAQ,IAAR,EAAc;AAChB,WAAO,IAAI,IAAJ,CAAS,QAAQ,IAAR,EAAc,EAAE,MAAM,IAAN,EAAzB,CAAP,CADgB;;;;;AAAlB,OAMK,OAAO,IAAI,IAAJ,CAAS,KAAT,EAAgB,EAAE,MAAM,IAAN,EAAlB,EAAgC,UAAU,GAAV,EAAe,IAAf,EAAqB;;;AAG/D,UAAI,GAAJ,EAAS;;;;AAIP,YAAI,IAAI,IAAJ,KAAa,eAAb,EAA8B;AAChC,gBAAM,GAAN,CAAU,OAAV,CAAkB,2FAAlB,EAA8G,GAA9G,EADgC;;;AAAlC,aAIK;AACH,kBAAM,GAAN,CAAU,IAAV,CAAe,kHAAf,EAAmI,GAAnI,EADG;WAJL;AAOA,eAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CAXO;OAAT;;AAcA,aAAO,IAAI,IAAJ,CAAS,IAAT,CAAP,CAjB+D;KAArB,CAAvC,CANL;CAnCe",
+      "file": "notFound.js",
+      "sourcesContent": [
+        "/**\n * 404 (Not Found) Handler\n *\n * Usage:\n * return res.notFound();\n * return res.notFound(err);\n * return res.notFound(err, 'some/specific/notfound/view');\n *\n * e.g.:\n * ```\n * return res.notFound();\n * ```\n *\n * NOTE:\n * If a request doesn't match any explicit routes (i.e. `config/routes.js`)\n * or route blueprints (i.e. \"shadow routes\", Sails will call `res.notFound()`\n * automatically.\n */\n\nmodule.exports = function notFound (data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(404);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.verbose('Sending 404 (\"Not Found\") response: \\n',data);\n  }\n  else sails.log.verbose('Sending 404 (\"Not Found\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = (typeof options === 'string') ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('404', { data: data }, function (err, html) {\n\n    // If a view error occured, fall back to JSON(P).\n    if (err) {\n      //\n      // Additionally:\n      // • If the view was missing, ignore the error but provide a verbose log.\n      if (err.code === 'E_VIEW_FAILED') {\n        sails.log.verbose('res.notFound() :: Could not locate view for error page (sending JSON instead).  Details: ',err);\n      }\n      // Otherwise, if this was a more serious error, log to the console with the details.\n      else {\n        sails.log.warn('res.notFound() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n      }\n      return res.jsonx(data);\n    }\n\n    return res.send(html);\n  });\n\n};\n\n"
+      ]
+    },
+    "mtime": 1449261422000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/responses/ok.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/responses/ok.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/responses/ok.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "ok.js",
+      "sourceFileName": "ok.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "ok"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * 200 (OK) Response\n *\n * Usage:\n * return res.ok();\n * return res.ok(data);\n * return res.ok(data, 'auth/login');\n *\n * @param  {Object} data\n * @param  {String|Object} options\n *          - pass string to render specified view\n */\n\nmodule.exports = function sendOK(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  sails.log.silly('res.ok() :: Sending 200 (\"OK\") response');\n\n  // Set status code\n  res.status(200);\n\n  // If appropriate, serve data as JSON(P)\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = typeof options === 'string' ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the implied view,\n  // but fall back to sending JSON(P) if no view can be inferred.\n  else return res.guessView({ data: data }, function couldNotGuessView() {\n      return res.jsonx(data);\n    });\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9rLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQWFBLE9BQU8sT0FBUCxHQUFpQixTQUFTLE1BQVQsQ0FBaUIsSUFBakIsRUFBdUIsT0FBdkIsRUFBZ0M7OztBQUcvQyxNQUFJLE1BQU0sS0FBSyxHQUFMLENBSHFDO0FBSS9DLE1BQUksTUFBTSxLQUFLLEdBQUwsQ0FKcUM7QUFLL0MsTUFBSSxRQUFRLElBQUksTUFBSixDQUxtQzs7QUFPL0MsUUFBTSxHQUFOLENBQVUsS0FBVixDQUFnQix5Q0FBaEI7OztBQVArQyxLQVUvQyxDQUFJLE1BQUosQ0FBVyxHQUFYOzs7QUFWK0MsTUFhM0MsSUFBSSxTQUFKLEVBQWU7QUFDakIsV0FBTyxJQUFJLEtBQUosQ0FBVSxJQUFWLENBQVAsQ0FEaUI7R0FBbkI7Ozs7QUFiK0MsU0FtQi9DLEdBQVUsT0FBUSxPQUFQLEtBQW1CLFFBQW5CLEdBQStCLEVBQUUsTUFBTSxPQUFOLEVBQWxDLEdBQW9ELFdBQVcsRUFBWDs7Ozs7QUFuQmYsTUF3QjNDLFFBQVEsSUFBUixFQUFjO0FBQ2hCLFdBQU8sSUFBSSxJQUFKLENBQVMsUUFBUSxJQUFSLEVBQWMsRUFBRSxNQUFNLElBQU4sRUFBekIsQ0FBUCxDQURnQjs7Ozs7QUFBbEIsT0FNSyxPQUFPLElBQUksU0FBSixDQUFjLEVBQUUsTUFBTSxJQUFOLEVBQWhCLEVBQThCLFNBQVMsaUJBQVQsR0FBOEI7QUFDdEUsYUFBTyxJQUFJLEtBQUosQ0FBVSxJQUFWLENBQVAsQ0FEc0U7S0FBOUIsQ0FBckMsQ0FOTDtDQXhCZSIsImZpbGUiOiJvay5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogMjAwIChPSykgUmVzcG9uc2VcbiAqXG4gKiBVc2FnZTpcbiAqIHJldHVybiByZXMub2soKTtcbiAqIHJldHVybiByZXMub2soZGF0YSk7XG4gKiByZXR1cm4gcmVzLm9rKGRhdGEsICdhdXRoL2xvZ2luJyk7XG4gKlxuICogQHBhcmFtICB7T2JqZWN0fSBkYXRhXG4gKiBAcGFyYW0gIHtTdHJpbmd8T2JqZWN0fSBvcHRpb25zXG4gKiAgICAgICAgICAtIHBhc3Mgc3RyaW5nIHRvIHJlbmRlciBzcGVjaWZpZWQgdmlld1xuICovXG5cbm1vZHVsZS5leHBvcnRzID0gZnVuY3Rpb24gc2VuZE9LIChkYXRhLCBvcHRpb25zKSB7XG5cbiAgLy8gR2V0IGFjY2VzcyB0byBgcmVxYCwgYHJlc2AsICYgYHNhaWxzYFxuICB2YXIgcmVxID0gdGhpcy5yZXE7XG4gIHZhciByZXMgPSB0aGlzLnJlcztcbiAgdmFyIHNhaWxzID0gcmVxLl9zYWlscztcblxuICBzYWlscy5sb2cuc2lsbHkoJ3Jlcy5vaygpIDo6IFNlbmRpbmcgMjAwIChcIk9LXCIpIHJlc3BvbnNlJyk7XG5cbiAgLy8gU2V0IHN0YXR1cyBjb2RlXG4gIHJlcy5zdGF0dXMoMjAwKTtcblxuICAvLyBJZiBhcHByb3ByaWF0ZSwgc2VydmUgZGF0YSBhcyBKU09OKFApXG4gIGlmIChyZXEud2FudHNKU09OKSB7XG4gICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgfVxuXG4gIC8vIElmIHNlY29uZCBhcmd1bWVudCBpcyBhIHN0cmluZywgd2UgdGFrZSB0aGF0IHRvIG1lYW4gaXQgcmVmZXJzIHRvIGEgdmlldy5cbiAgLy8gSWYgaXQgd2FzIG9taXR0ZWQsIHVzZSBhbiBlbXB0eSBvYmplY3QgKGB7fWApXG4gIG9wdGlvbnMgPSAodHlwZW9mIG9wdGlvbnMgPT09ICdzdHJpbmcnKSA/IHsgdmlldzogb3B0aW9ucyB9IDogb3B0aW9ucyB8fCB7fTtcblxuICAvLyBJZiBhIHZpZXcgd2FzIHByb3ZpZGVkIGluIG9wdGlvbnMsIHNlcnZlIGl0LlxuICAvLyBPdGhlcndpc2UgdHJ5IHRvIGd1ZXNzIGFuIGFwcHJvcHJpYXRlIHZpZXcsIG9yIGlmIHRoYXQgZG9lc24ndFxuICAvLyB3b3JrLCBqdXN0IHNlbmQgSlNPTi5cbiAgaWYgKG9wdGlvbnMudmlldykge1xuICAgIHJldHVybiByZXMudmlldyhvcHRpb25zLnZpZXcsIHsgZGF0YTogZGF0YSB9KTtcbiAgfVxuXG4gIC8vIElmIG5vIHNlY29uZCBhcmd1bWVudCBwcm92aWRlZCwgdHJ5IHRvIHNlcnZlIHRoZSBpbXBsaWVkIHZpZXcsXG4gIC8vIGJ1dCBmYWxsIGJhY2sgdG8gc2VuZGluZyBKU09OKFApIGlmIG5vIHZpZXcgY2FuIGJlIGluZmVycmVkLlxuICBlbHNlIHJldHVybiByZXMuZ3Vlc3NWaWV3KHsgZGF0YTogZGF0YSB9LCBmdW5jdGlvbiBjb3VsZE5vdEd1ZXNzVmlldyAoKSB7XG4gICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgfSk7XG5cbn07XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "ok.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;;;;;AAaA,OAAO,OAAP,GAAiB,SAAS,MAAT,CAAiB,IAAjB,EAAuB,OAAvB,EAAgC;;;AAG/C,MAAI,MAAM,KAAK,GAAL,CAHqC;AAI/C,MAAI,MAAM,KAAK,GAAL,CAJqC;AAK/C,MAAI,QAAQ,IAAI,MAAJ,CALmC;;AAO/C,QAAM,GAAN,CAAU,KAAV,CAAgB,yCAAhB;;;AAP+C,KAU/C,CAAI,MAAJ,CAAW,GAAX;;;AAV+C,MAa3C,IAAI,SAAJ,EAAe;AACjB,WAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADiB;GAAnB;;;;AAb+C,SAmB/C,GAAU,OAAQ,OAAP,KAAmB,QAAnB,GAA+B,EAAE,MAAM,OAAN,EAAlC,GAAoD,WAAW,EAAX;;;;;AAnBf,MAwB3C,QAAQ,IAAR,EAAc;AAChB,WAAO,IAAI,IAAJ,CAAS,QAAQ,IAAR,EAAc,EAAE,MAAM,IAAN,EAAzB,CAAP,CADgB;;;;;AAAlB,OAMK,OAAO,IAAI,SAAJ,CAAc,EAAE,MAAM,IAAN,EAAhB,EAA8B,SAAS,iBAAT,GAA8B;AACtE,aAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADsE;KAA9B,CAArC,CANL;CAxBe",
+      "file": "ok.js",
+      "sourcesContent": [
+        "/**\n * 200 (OK) Response\n *\n * Usage:\n * return res.ok();\n * return res.ok(data);\n * return res.ok(data, 'auth/login');\n *\n * @param  {Object} data\n * @param  {String|Object} options\n *          - pass string to render specified view\n */\n\nmodule.exports = function sendOK (data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  sails.log.silly('res.ok() :: Sending 200 (\"OK\") response');\n\n  // Set status code\n  res.status(200);\n\n  // If appropriate, serve data as JSON(P)\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = (typeof options === 'string') ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the implied view,\n  // but fall back to sending JSON(P) if no view can be inferred.\n  else return res.guessView({ data: data }, function couldNotGuessView () {\n    return res.jsonx(data);\n  });\n\n};\n"
+      ]
+    },
+    "mtime": 1449261422000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/responses/serverError.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/responses/serverError.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/responses/serverError.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "serverError.js",
+      "sourceFileName": "serverError.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "serverError"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * 500 (Server Error) Response\n *\n * Usage:\n * return res.serverError();\n * return res.serverError(err);\n * return res.serverError(err, 'some/specific/error/view');\n *\n * NOTE:\n * If something throws in a policy or controller, or an internal\n * error is encountered, Sails will call `res.serverError()`\n * automatically.\n */\n\nmodule.exports = function serverError(data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(500);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.error('Sending 500 (\"Server Error\") response: \\n', data);\n  } else sails.log.error('Sending empty 500 (\"Server Error\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = typeof options === 'string' ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('500', { data: data }, function (err, html) {\n\n      // If a view error occured, fall back to JSON(P).\n      if (err) {\n        //\n        // Additionally:\n        // • If the view was missing, ignore the error but provide a verbose log.\n        if (err.code === 'E_VIEW_FAILED') {\n          sails.log.verbose('res.serverError() :: Could not locate view for error page (sending JSON instead).  Details: ', err);\n        }\n        // Otherwise, if this was a more serious error, log to the console with the details.\n        else {\n            sails.log.warn('res.serverError() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n          }\n        return res.jsonx(data);\n      }\n\n      return res.send(html);\n    });\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNlcnZlckVycm9yLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7QUFjQSxPQUFPLE9BQVAsR0FBaUIsU0FBUyxXQUFULENBQXNCLElBQXRCLEVBQTRCLE9BQTVCLEVBQXFDOzs7QUFHcEQsTUFBSSxNQUFNLEtBQUssR0FBTCxDQUgwQztBQUlwRCxNQUFJLE1BQU0sS0FBSyxHQUFMLENBSjBDO0FBS3BELE1BQUksUUFBUSxJQUFJLE1BQUo7OztBQUx3QyxLQVFwRCxDQUFJLE1BQUosQ0FBVyxHQUFYOzs7QUFSb0QsTUFXaEQsU0FBUyxTQUFULEVBQW9CO0FBQ3RCLFVBQU0sR0FBTixDQUFVLEtBQVYsQ0FBZ0IsMkNBQWhCLEVBQTRELElBQTVELEVBRHNCO0dBQXhCLE1BR0ssTUFBTSxHQUFOLENBQVUsS0FBVixDQUFnQiw2Q0FBaEIsRUFITDs7Ozs7QUFYb0QsTUFtQmhELE1BQU0sTUFBTixDQUFhLFdBQWIsS0FBNkIsWUFBN0IsRUFBMkM7QUFDN0MsV0FBTyxTQUFQLENBRDZDO0dBQS9DOzs7QUFuQm9ELE1Bd0JoRCxJQUFJLFNBQUosRUFBZTtBQUNqQixXQUFPLElBQUksS0FBSixDQUFVLElBQVYsQ0FBUCxDQURpQjtHQUFuQjs7OztBQXhCb0QsU0E4QnBELEdBQVUsT0FBUSxPQUFQLEtBQW1CLFFBQW5CLEdBQStCLEVBQUUsTUFBTSxPQUFOLEVBQWxDLEdBQW9ELFdBQVcsRUFBWDs7Ozs7QUE5QlYsTUFtQ2hELFFBQVEsSUFBUixFQUFjO0FBQ2hCLFdBQU8sSUFBSSxJQUFKLENBQVMsUUFBUSxJQUFSLEVBQWMsRUFBRSxNQUFNLElBQU4sRUFBekIsQ0FBUCxDQURnQjs7Ozs7QUFBbEIsT0FNSyxPQUFPLElBQUksSUFBSixDQUFTLEtBQVQsRUFBZ0IsRUFBRSxNQUFNLElBQU4sRUFBbEIsRUFBZ0MsVUFBVSxHQUFWLEVBQWUsSUFBZixFQUFxQjs7O0FBRy9ELFVBQUksR0FBSixFQUFTOzs7O0FBSVAsWUFBSSxJQUFJLElBQUosS0FBYSxlQUFiLEVBQThCO0FBQ2hDLGdCQUFNLEdBQU4sQ0FBVSxPQUFWLENBQWtCLDhGQUFsQixFQUFpSCxHQUFqSCxFQURnQzs7O0FBQWxDLGFBSUs7QUFDSCxrQkFBTSxHQUFOLENBQVUsSUFBVixDQUFlLHFIQUFmLEVBQXNJLEdBQXRJLEVBREc7V0FKTDtBQU9BLGVBQU8sSUFBSSxLQUFKLENBQVUsSUFBVixDQUFQLENBWE87T0FBVDs7QUFjQSxhQUFPLElBQUksSUFBSixDQUFTLElBQVQsQ0FBUCxDQWpCK0Q7S0FBckIsQ0FBdkMsQ0FOTDtDQW5DZSIsImZpbGUiOiJzZXJ2ZXJFcnJvci5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogNTAwIChTZXJ2ZXIgRXJyb3IpIFJlc3BvbnNlXG4gKlxuICogVXNhZ2U6XG4gKiByZXR1cm4gcmVzLnNlcnZlckVycm9yKCk7XG4gKiByZXR1cm4gcmVzLnNlcnZlckVycm9yKGVycik7XG4gKiByZXR1cm4gcmVzLnNlcnZlckVycm9yKGVyciwgJ3NvbWUvc3BlY2lmaWMvZXJyb3IvdmlldycpO1xuICpcbiAqIE5PVEU6XG4gKiBJZiBzb21ldGhpbmcgdGhyb3dzIGluIGEgcG9saWN5IG9yIGNvbnRyb2xsZXIsIG9yIGFuIGludGVybmFsXG4gKiBlcnJvciBpcyBlbmNvdW50ZXJlZCwgU2FpbHMgd2lsbCBjYWxsIGByZXMuc2VydmVyRXJyb3IoKWBcbiAqIGF1dG9tYXRpY2FsbHkuXG4gKi9cblxubW9kdWxlLmV4cG9ydHMgPSBmdW5jdGlvbiBzZXJ2ZXJFcnJvciAoZGF0YSwgb3B0aW9ucykge1xuXG4gIC8vIEdldCBhY2Nlc3MgdG8gYHJlcWAsIGByZXNgLCAmIGBzYWlsc2BcbiAgdmFyIHJlcSA9IHRoaXMucmVxO1xuICB2YXIgcmVzID0gdGhpcy5yZXM7XG4gIHZhciBzYWlscyA9IHJlcS5fc2FpbHM7XG5cbiAgLy8gU2V0IHN0YXR1cyBjb2RlXG4gIHJlcy5zdGF0dXMoNTAwKTtcblxuICAvLyBMb2cgZXJyb3IgdG8gY29uc29sZVxuICBpZiAoZGF0YSAhPT0gdW5kZWZpbmVkKSB7XG4gICAgc2FpbHMubG9nLmVycm9yKCdTZW5kaW5nIDUwMCAoXCJTZXJ2ZXIgRXJyb3JcIikgcmVzcG9uc2U6IFxcbicsZGF0YSk7XG4gIH1cbiAgZWxzZSBzYWlscy5sb2cuZXJyb3IoJ1NlbmRpbmcgZW1wdHkgNTAwIChcIlNlcnZlciBFcnJvclwiKSByZXNwb25zZScpO1xuXG4gIC8vIE9ubHkgaW5jbHVkZSBlcnJvcnMgaW4gcmVzcG9uc2UgaWYgYXBwbGljYXRpb24gZW52aXJvbm1lbnRcbiAgLy8gaXMgbm90IHNldCB0byAncHJvZHVjdGlvbicuICBJbiBwcm9kdWN0aW9uLCB3ZSBzaG91bGRuJ3RcbiAgLy8gc2VuZCBiYWNrIGFueSBpZGVudGlmeWluZyBpbmZvcm1hdGlvbiBhYm91dCBlcnJvcnMuXG4gIGlmIChzYWlscy5jb25maWcuZW52aXJvbm1lbnQgPT09ICdwcm9kdWN0aW9uJykge1xuICAgIGRhdGEgPSB1bmRlZmluZWQ7XG4gIH1cblxuICAvLyBJZiB0aGUgdXNlci1hZ2VudCB3YW50cyBKU09OLCBhbHdheXMgcmVzcG9uZCB3aXRoIEpTT05cbiAgaWYgKHJlcS53YW50c0pTT04pIHtcbiAgICByZXR1cm4gcmVzLmpzb254KGRhdGEpO1xuICB9XG5cbiAgLy8gSWYgc2Vjb25kIGFyZ3VtZW50IGlzIGEgc3RyaW5nLCB3ZSB0YWtlIHRoYXQgdG8gbWVhbiBpdCByZWZlcnMgdG8gYSB2aWV3LlxuICAvLyBJZiBpdCB3YXMgb21pdHRlZCwgdXNlIGFuIGVtcHR5IG9iamVjdCAoYHt9YClcbiAgb3B0aW9ucyA9ICh0eXBlb2Ygb3B0aW9ucyA9PT0gJ3N0cmluZycpID8geyB2aWV3OiBvcHRpb25zIH0gOiBvcHRpb25zIHx8IHt9O1xuXG4gIC8vIElmIGEgdmlldyB3YXMgcHJvdmlkZWQgaW4gb3B0aW9ucywgc2VydmUgaXQuXG4gIC8vIE90aGVyd2lzZSB0cnkgdG8gZ3Vlc3MgYW4gYXBwcm9wcmlhdGUgdmlldywgb3IgaWYgdGhhdCBkb2Vzbid0XG4gIC8vIHdvcmssIGp1c3Qgc2VuZCBKU09OLlxuICBpZiAob3B0aW9ucy52aWV3KSB7XG4gICAgcmV0dXJuIHJlcy52aWV3KG9wdGlvbnMudmlldywgeyBkYXRhOiBkYXRhIH0pO1xuICB9XG5cbiAgLy8gSWYgbm8gc2Vjb25kIGFyZ3VtZW50IHByb3ZpZGVkLCB0cnkgdG8gc2VydmUgdGhlIGRlZmF1bHQgdmlldyxcbiAgLy8gYnV0IGZhbGwgYmFjayB0byBzZW5kaW5nIEpTT04oUCkgaWYgYW55IGVycm9ycyBvY2N1ci5cbiAgZWxzZSByZXR1cm4gcmVzLnZpZXcoJzUwMCcsIHsgZGF0YTogZGF0YSB9LCBmdW5jdGlvbiAoZXJyLCBodG1sKSB7XG5cbiAgICAvLyBJZiBhIHZpZXcgZXJyb3Igb2NjdXJlZCwgZmFsbCBiYWNrIHRvIEpTT04oUCkuXG4gICAgaWYgKGVycikge1xuICAgICAgLy9cbiAgICAgIC8vIEFkZGl0aW9uYWxseTpcbiAgICAgIC8vIOKAoiBJZiB0aGUgdmlldyB3YXMgbWlzc2luZywgaWdub3JlIHRoZSBlcnJvciBidXQgcHJvdmlkZSBhIHZlcmJvc2UgbG9nLlxuICAgICAgaWYgKGVyci5jb2RlID09PSAnRV9WSUVXX0ZBSUxFRCcpIHtcbiAgICAgICAgc2FpbHMubG9nLnZlcmJvc2UoJ3Jlcy5zZXJ2ZXJFcnJvcigpIDo6IENvdWxkIG5vdCBsb2NhdGUgdmlldyBmb3IgZXJyb3IgcGFnZSAoc2VuZGluZyBKU09OIGluc3RlYWQpLiAgRGV0YWlsczogJyxlcnIpO1xuICAgICAgfVxuICAgICAgLy8gT3RoZXJ3aXNlLCBpZiB0aGlzIHdhcyBhIG1vcmUgc2VyaW91cyBlcnJvciwgbG9nIHRvIHRoZSBjb25zb2xlIHdpdGggdGhlIGRldGFpbHMuXG4gICAgICBlbHNlIHtcbiAgICAgICAgc2FpbHMubG9nLndhcm4oJ3Jlcy5zZXJ2ZXJFcnJvcigpIDo6IFdoZW4gYXR0ZW1wdGluZyB0byByZW5kZXIgZXJyb3IgcGFnZSB2aWV3LCBhbiBlcnJvciBvY2N1cmVkIChzZW5kaW5nIEpTT04gaW5zdGVhZCkuICBEZXRhaWxzOiAnLCBlcnIpO1xuICAgICAgfVxuICAgICAgcmV0dXJuIHJlcy5qc29ueChkYXRhKTtcbiAgICB9XG5cbiAgICByZXR1cm4gcmVzLnNlbmQoaHRtbCk7XG4gIH0pO1xuXG59O1xuXG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "serverError.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;;;;;;AAcA,OAAO,OAAP,GAAiB,SAAS,WAAT,CAAsB,IAAtB,EAA4B,OAA5B,EAAqC;;;AAGpD,MAAI,MAAM,KAAK,GAAL,CAH0C;AAIpD,MAAI,MAAM,KAAK,GAAL,CAJ0C;AAKpD,MAAI,QAAQ,IAAI,MAAJ;;;AALwC,KAQpD,CAAI,MAAJ,CAAW,GAAX;;;AARoD,MAWhD,SAAS,SAAT,EAAoB;AACtB,UAAM,GAAN,CAAU,KAAV,CAAgB,2CAAhB,EAA4D,IAA5D,EADsB;GAAxB,MAGK,MAAM,GAAN,CAAU,KAAV,CAAgB,6CAAhB,EAHL;;;;;AAXoD,MAmBhD,MAAM,MAAN,CAAa,WAAb,KAA6B,YAA7B,EAA2C;AAC7C,WAAO,SAAP,CAD6C;GAA/C;;;AAnBoD,MAwBhD,IAAI,SAAJ,EAAe;AACjB,WAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CADiB;GAAnB;;;;AAxBoD,SA8BpD,GAAU,OAAQ,OAAP,KAAmB,QAAnB,GAA+B,EAAE,MAAM,OAAN,EAAlC,GAAoD,WAAW,EAAX;;;;;AA9BV,MAmChD,QAAQ,IAAR,EAAc;AAChB,WAAO,IAAI,IAAJ,CAAS,QAAQ,IAAR,EAAc,EAAE,MAAM,IAAN,EAAzB,CAAP,CADgB;;;;;AAAlB,OAMK,OAAO,IAAI,IAAJ,CAAS,KAAT,EAAgB,EAAE,MAAM,IAAN,EAAlB,EAAgC,UAAU,GAAV,EAAe,IAAf,EAAqB;;;AAG/D,UAAI,GAAJ,EAAS;;;;AAIP,YAAI,IAAI,IAAJ,KAAa,eAAb,EAA8B;AAChC,gBAAM,GAAN,CAAU,OAAV,CAAkB,8FAAlB,EAAiH,GAAjH,EADgC;;;AAAlC,aAIK;AACH,kBAAM,GAAN,CAAU,IAAV,CAAe,qHAAf,EAAsI,GAAtI,EADG;WAJL;AAOA,eAAO,IAAI,KAAJ,CAAU,IAAV,CAAP,CAXO;OAAT;;AAcA,aAAO,IAAI,IAAJ,CAAS,IAAT,CAAP,CAjB+D;KAArB,CAAvC,CANL;CAnCe",
+      "file": "serverError.js",
+      "sourcesContent": [
+        "/**\n * 500 (Server Error) Response\n *\n * Usage:\n * return res.serverError();\n * return res.serverError(err);\n * return res.serverError(err, 'some/specific/error/view');\n *\n * NOTE:\n * If something throws in a policy or controller, or an internal\n * error is encountered, Sails will call `res.serverError()`\n * automatically.\n */\n\nmodule.exports = function serverError (data, options) {\n\n  // Get access to `req`, `res`, & `sails`\n  var req = this.req;\n  var res = this.res;\n  var sails = req._sails;\n\n  // Set status code\n  res.status(500);\n\n  // Log error to console\n  if (data !== undefined) {\n    sails.log.error('Sending 500 (\"Server Error\") response: \\n',data);\n  }\n  else sails.log.error('Sending empty 500 (\"Server Error\") response');\n\n  // Only include errors in response if application environment\n  // is not set to 'production'.  In production, we shouldn't\n  // send back any identifying information about errors.\n  if (sails.config.environment === 'production') {\n    data = undefined;\n  }\n\n  // If the user-agent wants JSON, always respond with JSON\n  if (req.wantsJSON) {\n    return res.jsonx(data);\n  }\n\n  // If second argument is a string, we take that to mean it refers to a view.\n  // If it was omitted, use an empty object (`{}`)\n  options = (typeof options === 'string') ? { view: options } : options || {};\n\n  // If a view was provided in options, serve it.\n  // Otherwise try to guess an appropriate view, or if that doesn't\n  // work, just send JSON.\n  if (options.view) {\n    return res.view(options.view, { data: data });\n  }\n\n  // If no second argument provided, try to serve the default view,\n  // but fall back to sending JSON(P) if any errors occur.\n  else return res.view('500', { data: data }, function (err, html) {\n\n    // If a view error occured, fall back to JSON(P).\n    if (err) {\n      //\n      // Additionally:\n      // • If the view was missing, ignore the error but provide a verbose log.\n      if (err.code === 'E_VIEW_FAILED') {\n        sails.log.verbose('res.serverError() :: Could not locate view for error page (sending JSON instead).  Details: ',err);\n      }\n      // Otherwise, if this was a more serious error, log to the console with the details.\n      else {\n        sails.log.warn('res.serverError() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);\n      }\n      return res.jsonx(data);\n    }\n\n    return res.send(html);\n  });\n\n};\n\n"
+      ]
+    },
+    "mtime": 1449261422000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/services/mongoosemongo.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [
+            "connectMongooseToMongo",
+            "bindMongooseToModels"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "connectMongooseToMongo",
+              "exported": "connectMongooseToMongo"
+            },
+            {
+              "kind": "local",
+              "local": "bindMongooseToModels",
+              "exported": "bindMongooseToModels"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/services/mongoosemongo.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/services/mongoosemongo.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "mongoosemongo.js",
+      "sourceFileName": "mongoosemongo.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "mongoosemongo"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.connectMongooseToMongo = connectMongooseToMongo;\nexports.bindMongooseToModels = bindMongooseToModels;\n/**\n * connect mongoose to db\n * @return {promise} [successful promise]\n */\nfunction connectMongooseToMongo() {\n  var Promise = require('bluebird');\n  var mongoose = require('mongoose');\n  var dbName = sails.config.models.connection;\n  var config = sails.config.connections[dbName];\n\n  // the staging server's url instead..\n  // outsourcing the mongodb means that you cannot alter or drop the database\n  // locally\n  var mongoUrl = process.env.MONGOLAB_URI || config.url ? config.url : 'mongodb://' + config.host + ':' + config.port + '/' + config.database;\n\n  mongoose.connect(mongoUrl);\n\n  var db = Promise.promisifyAll(mongoose.connection);\n\n  db.on('error', sails.log.error);\n\n  return db.onceAsync('open').then(function () {\n    sails.log.info('mongoose-mongo\\t=>\\t(connected)\\t' + mongoUrl);\n  });\n} // connectMongoose\n\n/**\n * bind promisified mongoose functions to Model.mongoose. doing this in\n * bootstrap because waterline does something to functions in its build\n * phase (probably promisifying them)\n */\nfunction bindMongooseToModels() {\n  return require('bluebird').promisify(require('glob'))(\"api/models/*.js\").then(function (files) {\n    var mongoose = require('mongoose');\n    var Promise = require('bluebird');\n\n    Promise.promisifyAll(mongoose.Model);\n    Promise.promisifyAll(mongoose.Model.prototype);\n    Promise.promisifyAll(mongoose.Query.prototype);\n\n    var changeCase = require('change-case');\n    var path = require('path');\n    var _ = require('lodash');\n\n    var models = [];\n\n    _.each(files, function (file) {\n      var basename = path.basename(file, '.js');\n      // console.log('basename:', basename)\n      models.push(basename);\n    });\n\n    _.each(models, function (model) {\n      // define pascal and lowercase model names\n      var pascalCaseModelName = model;\n      var lowerCaseModelName = changeCase.lowerCase(model);\n\n      // get waterline model object\n      var Model = sails.models[lowerCaseModelName];\n\n      // get mongoose schema\n      var schema = Model.schema;\n\n      // if no schema, move to the next model\n      if (!schema) return;\n\n      // set schema collection name\n      schema.set('collection', lowerCaseModelName);\n\n      // declare mongoose model\n      var mongooseModel = mongoose.model(pascalCaseModelName, schema);\n\n      // append promisifed mongoose model to waterline object\n      Model.mongoose = mongooseModel;\n    }); // _.each\n    return;\n  });\n}\n\n/**\n * Ensure we have 2dsphere index on Place so GeoSpatial queries can work!\n * @return {promise} [nativeAsync promise fulfilling ensureIndexAsync]\n */\n// function ensureMongo2dSphereIndex() {\n//   Promise.promisifyAll(sails.models.place)\n//   return sails.models.place.nativeAsync()\n//   .then(Promise.promisifyAll)\n//   .then(function(places) {\n//     return places.createIndexAsync({ location: '2dsphere' })\n//   })\n// }\n//# sourceMappingURL=data:application/json;base64,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LCJmaWxlIjoibW9uZ29vc2Vtb25nby5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogY29ubmVjdCBtb25nb29zZSB0byBkYlxuICogQHJldHVybiB7cHJvbWlzZX0gW3N1Y2Nlc3NmdWwgcHJvbWlzZV1cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGNvbm5lY3RNb25nb29zZVRvTW9uZ28oKSB7XG4gIGNvbnN0IFByb21pc2UgPSByZXF1aXJlKCdibHVlYmlyZCcpXG4gIGNvbnN0IG1vbmdvb3NlID0gcmVxdWlyZSgnbW9uZ29vc2UnKVxuICBjb25zdCBkYk5hbWUgPSBzYWlscy5jb25maWcubW9kZWxzLmNvbm5lY3Rpb25cbiAgY29uc3QgY29uZmlnID0gc2FpbHMuY29uZmlnLmNvbm5lY3Rpb25zW2RiTmFtZV1cblxuICAvLyB0aGUgc3RhZ2luZyBzZXJ2ZXIncyB1cmwgaW5zdGVhZC4uXG4gIC8vIG91dHNvdXJjaW5nIHRoZSBtb25nb2RiIG1lYW5zIHRoYXQgeW91IGNhbm5vdCBhbHRlciBvciBkcm9wIHRoZSBkYXRhYmFzZVxuICAvLyBsb2NhbGx5XG4gIGNvbnN0IG1vbmdvVXJsID0gcHJvY2Vzcy5lbnYuTU9OR09MQUJfVVJJIHx8IGNvbmZpZy51cmwgPyBjb25maWcudXJsIDpcbiAgICAnbW9uZ29kYjovLycgKyBjb25maWcuaG9zdCArICc6JyArIGNvbmZpZy5wb3J0ICsgJy8nICsgY29uZmlnLmRhdGFiYXNlXG5cbiAgbW9uZ29vc2UuY29ubmVjdChtb25nb1VybClcblxuICBjb25zdCBkYiA9IFByb21pc2UucHJvbWlzaWZ5QWxsKG1vbmdvb3NlLmNvbm5lY3Rpb24pXG5cbiAgZGIub24oJ2Vycm9yJywgc2FpbHMubG9nLmVycm9yKVxuXG4gIHJldHVybiBkYi5vbmNlQXN5bmMoJ29wZW4nKVxuICAudGhlbiggKCkgPT4ge1xuICAgIHNhaWxzLmxvZy5pbmZvKCdtb25nb29zZS1tb25nb1xcdD0+XFx0KGNvbm5lY3RlZClcXHQnICsgbW9uZ29VcmwpXG4gIH0pXG59IC8vIGNvbm5lY3RNb25nb29zZVxuXG4vKipcbiAqIGJpbmQgcHJvbWlzaWZpZWQgbW9uZ29vc2UgZnVuY3Rpb25zIHRvIE1vZGVsLm1vbmdvb3NlLiBkb2luZyB0aGlzIGluXG4gKiBib290c3RyYXAgYmVjYXVzZSB3YXRlcmxpbmUgZG9lcyBzb21ldGhpbmcgdG8gZnVuY3Rpb25zIGluIGl0cyBidWlsZFxuICogcGhhc2UgKHByb2JhYmx5IHByb21pc2lmeWluZyB0aGVtKVxuICovXG5leHBvcnQgZnVuY3Rpb24gYmluZE1vbmdvb3NlVG9Nb2RlbHMoKSB7XG4gIHJldHVybiByZXF1aXJlKCdibHVlYmlyZCcpLnByb21pc2lmeShyZXF1aXJlKCdnbG9iJykpKFwiYXBpL21vZGVscy8qLmpzXCIpXG4gIC50aGVuKGZ1bmN0aW9uKGZpbGVzKSB7XG4gICAgY29uc3QgbW9uZ29vc2UgPSByZXF1aXJlKCdtb25nb29zZScpXG4gICAgY29uc3QgUHJvbWlzZSA9IHJlcXVpcmUoJ2JsdWViaXJkJylcblxuICAgIFByb21pc2UucHJvbWlzaWZ5QWxsKG1vbmdvb3NlLk1vZGVsKVxuICAgIFByb21pc2UucHJvbWlzaWZ5QWxsKG1vbmdvb3NlLk1vZGVsLnByb3RvdHlwZSlcbiAgICBQcm9taXNlLnByb21pc2lmeUFsbChtb25nb29zZS5RdWVyeS5wcm90b3R5cGUpXG5cbiAgICBjb25zdCBjaGFuZ2VDYXNlID0gcmVxdWlyZSgnY2hhbmdlLWNhc2UnKVxuICAgIGNvbnN0IHBhdGggPSByZXF1aXJlKCdwYXRoJylcbiAgICBjb25zdCBfID0gcmVxdWlyZSgnbG9kYXNoJylcblxuICAgIGNvbnN0IG1vZGVscyA9IFtdXG5cbiAgICBfLmVhY2goZmlsZXMsIGZ1bmN0aW9uKGZpbGUpIHtcbiAgICAgIHZhciBiYXNlbmFtZSA9IHBhdGguYmFzZW5hbWUoZmlsZSwgJy5qcycpO1xuICAgICAgLy8gY29uc29sZS5sb2coJ2Jhc2VuYW1lOicsIGJhc2VuYW1lKVxuICAgICAgbW9kZWxzLnB1c2goYmFzZW5hbWUpXG4gICAgfSlcblxuICAgIF8uZWFjaChtb2RlbHMsIGZ1bmN0aW9uKG1vZGVsKSB7XG4gICAgICAvLyBkZWZpbmUgcGFzY2FsIGFuZCBsb3dlcmNhc2UgbW9kZWwgbmFtZXNcbiAgICAgIGNvbnN0IHBhc2NhbENhc2VNb2RlbE5hbWUgPSBtb2RlbFxuICAgICAgY29uc3QgbG93ZXJDYXNlTW9kZWxOYW1lID0gY2hhbmdlQ2FzZS5sb3dlckNhc2UobW9kZWwpXG5cbiAgICAgIC8vIGdldCB3YXRlcmxpbmUgbW9kZWwgb2JqZWN0XG4gICAgICBjb25zdCBNb2RlbCA9IHNhaWxzLm1vZGVsc1tsb3dlckNhc2VNb2RlbE5hbWVdXG5cbiAgICAgIC8vIGdldCBtb25nb29zZSBzY2hlbWFcbiAgICAgIGNvbnN0IHNjaGVtYSA9IE1vZGVsLnNjaGVtYVxuXG4gICAgICAvLyBpZiBubyBzY2hlbWEsIG1vdmUgdG8gdGhlIG5leHQgbW9kZWxcbiAgICAgIGlmICghc2NoZW1hKSByZXR1cm5cblxuICAgICAgLy8gc2V0IHNjaGVtYSBjb2xsZWN0aW9uIG5hbWVcbiAgICAgIHNjaGVtYS5zZXQoJ2NvbGxlY3Rpb24nLCBsb3dlckNhc2VNb2RlbE5hbWUpXG5cbiAgICAgIC8vIGRlY2xhcmUgbW9uZ29vc2UgbW9kZWxcbiAgICAgIGNvbnN0IG1vbmdvb3NlTW9kZWwgPSBtb25nb29zZS5tb2RlbChwYXNjYWxDYXNlTW9kZWxOYW1lLCBzY2hlbWEpXG5cbiAgICAgIC8vIGFwcGVuZCBwcm9taXNpZmVkIG1vbmdvb3NlIG1vZGVsIHRvIHdhdGVybGluZSBvYmplY3RcbiAgICAgIE1vZGVsLm1vbmdvb3NlID0gbW9uZ29vc2VNb2RlbFxuICAgIH0pIC8vIF8uZWFjaFxuICAgIHJldHVyblxuICB9KVxufVxuXG5cbi8qKlxuICogRW5zdXJlIHdlIGhhdmUgMmRzcGhlcmUgaW5kZXggb24gUGxhY2Ugc28gR2VvU3BhdGlhbCBxdWVyaWVzIGNhbiB3b3JrIVxuICogQHJldHVybiB7cHJvbWlzZX0gW25hdGl2ZUFzeW5jIHByb21pc2UgZnVsZmlsbGluZyBlbnN1cmVJbmRleEFzeW5jXVxuICovXG4vLyBmdW5jdGlvbiBlbnN1cmVNb25nbzJkU3BoZXJlSW5kZXgoKSB7XG4vLyAgIFByb21pc2UucHJvbWlzaWZ5QWxsKHNhaWxzLm1vZGVscy5wbGFjZSlcbi8vICAgcmV0dXJuIHNhaWxzLm1vZGVscy5wbGFjZS5uYXRpdmVBc3luYygpXG4vLyAgIC50aGVuKFByb21pc2UucHJvbWlzaWZ5QWxsKVxuLy8gICAudGhlbihmdW5jdGlvbihwbGFjZXMpIHtcbi8vICAgICByZXR1cm4gcGxhY2VzLmNyZWF0ZUluZGV4QXN5bmMoeyBsb2NhdGlvbjogJzJkc3BoZXJlJyB9KVxuLy8gICB9KVxuLy8gfSBcbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "mongoosemongo.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;QAIgB;QA6BA;;;;;AA7BT,SAAS,sBAAT,GAAkC;AACvC,MAAM,UAAU,QAAQ,UAAR,CAAV,CADiC;AAEvC,MAAM,WAAW,QAAQ,UAAR,CAAX,CAFiC;AAGvC,MAAM,SAAS,MAAM,MAAN,CAAa,MAAb,CAAoB,UAApB,CAHwB;AAIvC,MAAM,SAAS,MAAM,MAAN,CAAa,WAAb,CAAyB,MAAzB,CAAT;;;;;AAJiC,MASjC,WAAW,QAAQ,GAAR,CAAY,YAAZ,IAA4B,OAAO,GAAP,GAAa,OAAO,GAAP,GACxD,eAAe,OAAO,IAAP,GAAc,GAA7B,GAAmC,OAAO,IAAP,GAAc,GAAjD,GAAuD,OAAO,QAAP,CAVlB;;AAYvC,WAAS,OAAT,CAAiB,QAAjB,EAZuC;;AAcvC,MAAM,KAAK,QAAQ,YAAR,CAAqB,SAAS,UAAT,CAA1B,CAdiC;;AAgBvC,KAAG,EAAH,CAAM,OAAN,EAAe,MAAM,GAAN,CAAU,KAAV,CAAf,CAhBuC;;AAkBvC,SAAO,GAAG,SAAH,CAAa,MAAb,EACN,IADM,CACA,YAAM;AACX,UAAM,GAAN,CAAU,IAAV,CAAe,sCAAsC,QAAtC,CAAf,CADW;GAAN,CADP,CAlBuC;CAAlC;;;;;;;AA6BA,SAAS,oBAAT,GAAgC;AACrC,SAAO,QAAQ,UAAR,EAAoB,SAApB,CAA8B,QAAQ,MAAR,CAA9B,EAA+C,iBAA/C,EACN,IADM,CACD,UAAS,KAAT,EAAgB;AACpB,QAAM,WAAW,QAAQ,UAAR,CAAX,CADc;AAEpB,QAAM,UAAU,QAAQ,UAAR,CAAV,CAFc;;AAIpB,YAAQ,YAAR,CAAqB,SAAS,KAAT,CAArB,CAJoB;AAKpB,YAAQ,YAAR,CAAqB,SAAS,KAAT,CAAe,SAAf,CAArB,CALoB;AAMpB,YAAQ,YAAR,CAAqB,SAAS,KAAT,CAAe,SAAf,CAArB,CANoB;;AAQpB,QAAM,aAAa,QAAQ,aAAR,CAAb,CARc;AASpB,QAAM,OAAO,QAAQ,MAAR,CAAP,CATc;AAUpB,QAAM,IAAI,QAAQ,QAAR,CAAJ,CAVc;;AAYpB,QAAM,SAAS,EAAT,CAZc;;AAcpB,MAAE,IAAF,CAAO,KAAP,EAAc,UAAS,IAAT,EAAe;AAC3B,UAAI,WAAW,KAAK,QAAL,CAAc,IAAd,EAAoB,KAApB,CAAX;;AADuB,YAG3B,CAAO,IAAP,CAAY,QAAZ,EAH2B;KAAf,CAAd,CAdoB;;AAoBpB,MAAE,IAAF,CAAO,MAAP,EAAe,UAAS,KAAT,EAAgB;;AAE7B,UAAM,sBAAsB,KAAtB,CAFuB;AAG7B,UAAM,qBAAqB,WAAW,SAAX,CAAqB,KAArB,CAArB;;;AAHuB,UAMvB,QAAQ,MAAM,MAAN,CAAa,kBAAb,CAAR;;;AANuB,UASvB,SAAS,MAAM,MAAN;;;AATc,UAYzB,CAAC,MAAD,EAAS,OAAb;;;AAZ6B,YAe7B,CAAO,GAAP,CAAW,YAAX,EAAyB,kBAAzB;;;AAf6B,UAkBvB,gBAAgB,SAAS,KAAT,CAAe,mBAAf,EAAoC,MAApC,CAAhB;;;AAlBuB,WAqB7B,CAAM,QAAN,GAAiB,aAAjB,CArB6B;KAAhB,CAAf;AApBoB;GAAhB,CADN,CADqC;CAAhC",
+      "file": "mongoosemongo.js",
+      "sourcesContent": [
+        "/**\n * connect mongoose to db\n * @return {promise} [successful promise]\n */\nexport function connectMongooseToMongo() {\n  const Promise = require('bluebird')\n  const mongoose = require('mongoose')\n  const dbName = sails.config.models.connection\n  const config = sails.config.connections[dbName]\n\n  // the staging server's url instead..\n  // outsourcing the mongodb means that you cannot alter or drop the database\n  // locally\n  const mongoUrl = process.env.MONGOLAB_URI || config.url ? config.url :\n    'mongodb://' + config.host + ':' + config.port + '/' + config.database\n\n  mongoose.connect(mongoUrl)\n\n  const db = Promise.promisifyAll(mongoose.connection)\n\n  db.on('error', sails.log.error)\n\n  return db.onceAsync('open')\n  .then( () => {\n    sails.log.info('mongoose-mongo\\t=>\\t(connected)\\t' + mongoUrl)\n  })\n} // connectMongoose\n\n/**\n * bind promisified mongoose functions to Model.mongoose. doing this in\n * bootstrap because waterline does something to functions in its build\n * phase (probably promisifying them)\n */\nexport function bindMongooseToModels() {\n  return require('bluebird').promisify(require('glob'))(\"api/models/*.js\")\n  .then(function(files) {\n    const mongoose = require('mongoose')\n    const Promise = require('bluebird')\n\n    Promise.promisifyAll(mongoose.Model)\n    Promise.promisifyAll(mongoose.Model.prototype)\n    Promise.promisifyAll(mongoose.Query.prototype)\n\n    const changeCase = require('change-case')\n    const path = require('path')\n    const _ = require('lodash')\n\n    const models = []\n\n    _.each(files, function(file) {\n      var basename = path.basename(file, '.js');\n      // console.log('basename:', basename)\n      models.push(basename)\n    })\n\n    _.each(models, function(model) {\n      // define pascal and lowercase model names\n      const pascalCaseModelName = model\n      const lowerCaseModelName = changeCase.lowerCase(model)\n\n      // get waterline model object\n      const Model = sails.models[lowerCaseModelName]\n\n      // get mongoose schema\n      const schema = Model.schema\n\n      // if no schema, move to the next model\n      if (!schema) return\n\n      // set schema collection name\n      schema.set('collection', lowerCaseModelName)\n\n      // declare mongoose model\n      const mongooseModel = mongoose.model(pascalCaseModelName, schema)\n\n      // append promisifed mongoose model to waterline object\n      Model.mongoose = mongooseModel\n    }) // _.each\n    return\n  })\n}\n\n\n/**\n * Ensure we have 2dsphere index on Place so GeoSpatial queries can work!\n * @return {promise} [nativeAsync promise fulfilling ensureIndexAsync]\n */\n// function ensureMongo2dSphereIndex() {\n//   Promise.promisifyAll(sails.models.place)\n//   return sails.models.place.nativeAsync()\n//   .then(Promise.promisifyAll)\n//   .then(function(places) {\n//     return places.createIndexAsync({ location: '2dsphere' })\n//   })\n// } \n"
+      ]
+    },
+    "mtime": 1450125394000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/services/redis.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [
+            "connect",
+            "setup",
+            "socket"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "connect",
+              "exported": "connect"
+            },
+            {
+              "kind": "local",
+              "local": "setup",
+              "exported": "setup"
+            },
+            {
+              "kind": "local",
+              "local": "socket",
+              "exported": "socket"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/services/redis.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/services/redis.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "redis.js",
+      "sourceFileName": "redis.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "redis"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.connect = connect;\nexports.setup = setup;\nfunction connect() {\n\n  var redis = require('redis');\n  var env = process.env.NODE_ENV;\n  var name = process.env.APP_NAME + '@' + env;\n\n  var is = require('is_js');\n\n  console.log('mark');\n  console.log(process.env.NR_DISCONNECT_PROCESSORS);\n  if (is.existy(process.env.NR_DISCONNECT_PROCESSORS)) {\n\n    console.log('mark2');\n\n    var rtg = require('url').parse(process.env.REDISTOGO_URL);\n\n    var client = redis.createClient(rtg.port, rtg.hostname);\n    client.on('error', sails.dlogerror);\n    client.auth(rtg.auth.split(':')[1]);\n    client.send_command('CLIENT', ['SETNAME', name]);\n\n    sails.REDIS_PUB = client;\n\n    var client2 = redis.createClient(rtg.port, rtg.hostname);\n    client2.auth(rtg.auth.split(':')[1]);\n    client2.on('error', sails.dlogerror);\n    client2.send_command('CLIENT', ['SETNAME', name]);\n    sails.REDIS_SUB = client2;\n\n    var client3 = require('redis').createClient(rtg.port, rtg.hostname);\n    client3.on('error', sails.dlogerror);\n    client3.auth(rtg.auth.split(':')[1]);\n    client3.send_command('CLIENT', ['SETNAME', name]);\n    sails.REDIS_QUEUE = client;\n\n    sails.log.info('redis server\\t=>\\t(connected)\\t' + process.env.REDISTOGO_URL);\n  } else {\n\n    console.log('mark3');\n\n    var _client = redis.createClient();\n    _client.on('error', sails.dlogerror);\n    _client.send_command('CLIENT', ['SETNAME', name]);\n\n    sails.REDIS_PUB = _client;\n\n    var _client2 = redis.createClient();\n    _client2.on('error', sails.dlogerror);\n    _client2.send_command('CLIENT', ['SETNAME', name]);\n    _client2.setMaxListeners(1);\n    sails.REDIS_SUB = _client2;\n\n    var _client3 = redis.createClient();\n    _client3.on('error', sails.dlogerror);\n    _client3.send_command('CLIENT', ['SETNAME', name]);\n    sails.REDIS_QUEUE = _client;\n\n    sails.log.info('redis server\\t=>\\t(connected)\\tredis://127.0.0.1:6379');\n  }\n\n  return require('bluebird').resolve();\n}\n\n// command to flush all memory in redis\n// redis-cli -h tarpon.redistogo.com -p 11655 -a 48ac348ee1bbc98c9d9995f82726213f flushall\n\nfunction setup(socket) {\n\n  var sub = sails.REDIS_SUB;\n\n  sub.subscribe('/user/find');\n\n  sub.on('message', function (channel, message) {\n    var data = JSON.parse(message);\n    switch (channel) {\n      case '/user/find':\n        sails.controllers.user.redisPubFindOne(data);\n      default:\n        return;\n    }\n  });\n}\n//# sourceMappingURL=data:application/json;base64,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RUFBUixDQUFXLE9BQVgsRUFBb0IsTUFBTSxTQUFOLENBQXBCLENBWEs7QUFZTCxhQUFRLFlBQVIsQ0FBcUIsUUFBckIsRUFBK0IsQ0FBQyxTQUFELEVBQVksSUFBWixDQUEvQixFQVpLO0FBYUwsYUFBUSxlQUFSLENBQXdCLENBQXhCLEVBYks7QUFjTCxVQUFNLFNBQU4sR0FBa0IsUUFBbEIsQ0FkSzs7QUFnQkwsUUFBTSxXQUFVLE1BQU0sWUFBTixFQUFWLENBaEJEO0FBaUJMLGFBQVEsRUFBUixDQUFXLE9BQVgsRUFBb0IsTUFBTSxTQUFOLENBQXBCLENBakJLO0FBa0JMLGFBQVEsWUFBUixDQUFxQixRQUFyQixFQUErQixDQUFDLFNBQUQsRUFBWSxJQUFaLENBQS9CLEVBbEJLO0FBbUJMLFVBQU0sV0FBTixHQUFvQixPQUFwQixDQW5CSzs7QUFxQkwsVUFBTSxHQUFOLENBQVUsSUFBVixDQUFlLHVEQUFmLEVBckJLO0dBOUJQOztBQXNEQSxTQUFPLFFBQVEsVUFBUixFQUFvQixPQUFwQixFQUFQLENBaEV3QjtDQUFuQjs7Ozs7QUFzRUEsU0FBUyxLQUFULENBQWUsTUFBZixFQUF1Qjs7QUFFNUIsTUFBTSxNQUFNLE1BQU0sU0FBTixDQUZnQjs7QUFJNUIsTUFBSSxTQUFKLENBQWMsWUFBZCxFQUo0Qjs7QUFNNUIsTUFBSSxFQUFKLENBQU8sU0FBUCxFQUFrQixVQUFDLE9BQUQsRUFBVSxPQUFWLEVBQXNCO0FBQ3RDLFFBQU0sT0FBTyxLQUFLLEtBQUwsQ0FBVyxPQUFYLENBQVAsQ0FEZ0M7QUFFdEMsWUFBUSxPQUFSO0FBQ0UsV0FBSyxZQUFMO0FBQW1CLGNBQU0sV0FBTixDQUFrQixJQUFsQixDQUF1QixlQUF2QixDQUF1QyxJQUF2QyxFQUFuQjtBQURGO0FBRVcsZUFBVDtBQUZGLEtBRnNDO0dBQXRCLENBQWxCLENBTjRCO0NBQXZCIiwiZmlsZSI6InJlZGlzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG5cblxuZXhwb3J0IGZ1bmN0aW9uIGNvbm5lY3QoKSB7XG5cbiAgY29uc3QgcmVkaXMgPSByZXF1aXJlKCdyZWRpcycpXG4gIGNvbnN0IGVudiA9IHByb2Nlc3MuZW52Lk5PREVfRU5WXG4gIGNvbnN0IG5hbWUgPSBwcm9jZXNzLmVudi5BUFBfTkFNRSArICdAJyArIGVudlxuXG4gIGNvbnN0IGlzID0gcmVxdWlyZSgnaXNfanMnKVxuXG4gICAgY29uc29sZS5sb2coJ21hcmsnKVxuICAgIGNvbnNvbGUubG9nKHByb2Nlc3MuZW52Lk5SX0RJU0NPTk5FQ1RfUFJPQ0VTU09SUylcbiAgaWYgKGlzLmV4aXN0eShwcm9jZXNzLmVudi5OUl9ESVNDT05ORUNUX1BST0NFU1NPUlMpKSB7XG5cbiAgICBjb25zb2xlLmxvZygnbWFyazInKVxuXG4gICAgY29uc3QgcnRnICAgPSByZXF1aXJlKCd1cmwnKS5wYXJzZShwcm9jZXNzLmVudi5SRURJU1RPR09fVVJMKVxuXG4gICAgY29uc3QgY2xpZW50ID0gcmVkaXMuY3JlYXRlQ2xpZW50KHJ0Zy5wb3J0LCBydGcuaG9zdG5hbWUpXG4gICAgY2xpZW50Lm9uKCdlcnJvcicsIHNhaWxzLmRsb2dlcnJvcilcbiAgICBjbGllbnQuYXV0aChydGcuYXV0aC5zcGxpdCgnOicpWzFdKVxuICAgIGNsaWVudC5zZW5kX2NvbW1hbmQoJ0NMSUVOVCcsIFsnU0VUTkFNRScsIG5hbWVdKVxuXG4gICAgc2FpbHMuUkVESVNfUFVCID0gY2xpZW50XG5cbiAgICBjb25zdCBjbGllbnQyID0gcmVkaXMuY3JlYXRlQ2xpZW50KHJ0Zy5wb3J0LCBydGcuaG9zdG5hbWUpXG4gICAgY2xpZW50Mi5hdXRoKHJ0Zy5hdXRoLnNwbGl0KCc6JylbMV0pXG4gICAgY2xpZW50Mi5vbignZXJyb3InLCBzYWlscy5kbG9nZXJyb3IpXG4gICAgY2xpZW50Mi5zZW5kX2NvbW1hbmQoJ0NMSUVOVCcsIFsnU0VUTkFNRScsIG5hbWVdKVxuICAgIHNhaWxzLlJFRElTX1NVQiA9IGNsaWVudDJcblxuICAgIGNvbnN0IGNsaWVudDMgPSByZXF1aXJlKCdyZWRpcycpLmNyZWF0ZUNsaWVudChydGcucG9ydCwgcnRnLmhvc3RuYW1lKVxuICAgIGNsaWVudDMub24oJ2Vycm9yJywgc2FpbHMuZGxvZ2Vycm9yKVxuICAgIGNsaWVudDMuYXV0aChydGcuYXV0aC5zcGxpdCgnOicpWzFdKVxuICAgIGNsaWVudDMuc2VuZF9jb21tYW5kKCdDTElFTlQnLCBbJ1NFVE5BTUUnLCBuYW1lXSlcbiAgICBzYWlscy5SRURJU19RVUVVRSA9IGNsaWVudFxuXG5cbiAgICBzYWlscy5sb2cuaW5mbyhcbiAgICAgICdyZWRpcyBzZXJ2ZXJcXHQ9PlxcdChjb25uZWN0ZWQpXFx0JyArIHByb2Nlc3MuZW52LlJFRElTVE9HT19VUkxcbiAgICApXG5cbiAgfSBlbHNlIHtcblxuICAgIGNvbnNvbGUubG9nKCdtYXJrMycpXG5cbiAgICBjb25zdCBjbGllbnQgPSByZWRpcy5jcmVhdGVDbGllbnQoKVxuICAgIGNsaWVudC5vbignZXJyb3InLCBzYWlscy5kbG9nZXJyb3IpXG4gICAgY2xpZW50LnNlbmRfY29tbWFuZCgnQ0xJRU5UJywgWydTRVROQU1FJywgbmFtZV0pXG5cbiAgICBzYWlscy5SRURJU19QVUIgPSBjbGllbnRcblxuICAgIGNvbnN0IGNsaWVudDIgPSByZWRpcy5jcmVhdGVDbGllbnQoKVxuICAgIGNsaWVudDIub24oJ2Vycm9yJywgc2FpbHMuZGxvZ2Vycm9yKVxuICAgIGNsaWVudDIuc2VuZF9jb21tYW5kKCdDTElFTlQnLCBbJ1NFVE5BTUUnLCBuYW1lXSlcbiAgICBjbGllbnQyLnNldE1heExpc3RlbmVycygxKVxuICAgIHNhaWxzLlJFRElTX1NVQiA9IGNsaWVudDJcblxuICAgIGNvbnN0IGNsaWVudDMgPSByZWRpcy5jcmVhdGVDbGllbnQoKVxuICAgIGNsaWVudDMub24oJ2Vycm9yJywgc2FpbHMuZGxvZ2Vycm9yKVxuICAgIGNsaWVudDMuc2VuZF9jb21tYW5kKCdDTElFTlQnLCBbJ1NFVE5BTUUnLCBuYW1lXSlcbiAgICBzYWlscy5SRURJU19RVUVVRSA9IGNsaWVudFxuXG4gICAgc2FpbHMubG9nLmluZm8oJ3JlZGlzIHNlcnZlclxcdD0+XFx0KGNvbm5lY3RlZClcXHRyZWRpczovLzEyNy4wLjAuMTo2Mzc5JylcbiAgfVxuXG4gIHJldHVybiByZXF1aXJlKCdibHVlYmlyZCcpLnJlc29sdmUoKVxufVxuXG4vLyBjb21tYW5kIHRvIGZsdXNoIGFsbCBtZW1vcnkgaW4gcmVkaXNcbi8vIHJlZGlzLWNsaSAtaCB0YXJwb24ucmVkaXN0b2dvLmNvbSAtcCAxMTY1NSAtYSA0OGFjMzQ4ZWUxYmJjOThjOWQ5OTk1ZjgyNzI2MjEzZiBmbHVzaGFsbFxuXG5leHBvcnQgZnVuY3Rpb24gc2V0dXAoc29ja2V0KSB7XG5cbiAgY29uc3Qgc3ViID0gc2FpbHMuUkVESVNfU1VCXG5cbiAgc3ViLnN1YnNjcmliZSgnL3VzZXIvZmluZCcpXG5cbiAgc3ViLm9uKCdtZXNzYWdlJywgKGNoYW5uZWwsIG1lc3NhZ2UpID0+IHtcbiAgICBjb25zdCBkYXRhID0gSlNPTi5wYXJzZShtZXNzYWdlKVxuICAgIHN3aXRjaCAoY2hhbm5lbCkge1xuICAgICAgY2FzZSAnL3VzZXIvZmluZCc6IHNhaWxzLmNvbnRyb2xsZXJzLnVzZXIucmVkaXNQdWJGaW5kT25lKGRhdGEpXG4gICAgICBkZWZhdWx0OiByZXR1cm5cbiAgICB9XG4gIH0pXG59XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "redis.js"
+      ],
+      "names": [],
+      "mappings": "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",
+      "file": "redis.js",
+      "sourcesContent": [
+        "\n\n\nexport function connect() {\n\n  const redis = require('redis')\n  const env = process.env.NODE_ENV\n  const name = process.env.APP_NAME + '@' + env\n\n  const is = require('is_js')\n\n    console.log('mark')\n    console.log(process.env.NR_DISCONNECT_PROCESSORS)\n  if (is.existy(process.env.NR_DISCONNECT_PROCESSORS)) {\n\n    console.log('mark2')\n\n    const rtg   = require('url').parse(process.env.REDISTOGO_URL)\n\n    const client = redis.createClient(rtg.port, rtg.hostname)\n    client.on('error', sails.dlogerror)\n    client.auth(rtg.auth.split(':')[1])\n    client.send_command('CLIENT', ['SETNAME', name])\n\n    sails.REDIS_PUB = client\n\n    const client2 = redis.createClient(rtg.port, rtg.hostname)\n    client2.auth(rtg.auth.split(':')[1])\n    client2.on('error', sails.dlogerror)\n    client2.send_command('CLIENT', ['SETNAME', name])\n    sails.REDIS_SUB = client2\n\n    const client3 = require('redis').createClient(rtg.port, rtg.hostname)\n    client3.on('error', sails.dlogerror)\n    client3.auth(rtg.auth.split(':')[1])\n    client3.send_command('CLIENT', ['SETNAME', name])\n    sails.REDIS_QUEUE = client\n\n\n    sails.log.info(\n      'redis server\\t=>\\t(connected)\\t' + process.env.REDISTOGO_URL\n    )\n\n  } else {\n\n    console.log('mark3')\n\n    const client = redis.createClient()\n    client.on('error', sails.dlogerror)\n    client.send_command('CLIENT', ['SETNAME', name])\n\n    sails.REDIS_PUB = client\n\n    const client2 = redis.createClient()\n    client2.on('error', sails.dlogerror)\n    client2.send_command('CLIENT', ['SETNAME', name])\n    client2.setMaxListeners(1)\n    sails.REDIS_SUB = client2\n\n    const client3 = redis.createClient()\n    client3.on('error', sails.dlogerror)\n    client3.send_command('CLIENT', ['SETNAME', name])\n    sails.REDIS_QUEUE = client\n\n    sails.log.info('redis server\\t=>\\t(connected)\\tredis://127.0.0.1:6379')\n  }\n\n  return require('bluebird').resolve()\n}\n\n// command to flush all memory in redis\n// redis-cli -h tarpon.redistogo.com -p 11655 -a 48ac348ee1bbc98c9d9995f82726213f flushall\n\nexport function setup(socket) {\n\n  const sub = sails.REDIS_SUB\n\n  sub.subscribe('/user/find')\n\n  sub.on('message', (channel, message) => {\n    const data = JSON.parse(message)\n    switch (channel) {\n      case '/user/find': sails.controllers.user.redisPubFindOne(data)\n      default: return\n    }\n  })\n}\n"
+      ]
+    },
+    "mtime": 1460309105000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/services/resque.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [
+            "setup"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "setup",
+              "exported": "setup"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/services/resque.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/services/resque.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "resque.js",
+      "sourceFileName": "resque.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "resque"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.setup = setup;\nfunction setup() {\n\n  /////////////////////////\n  // REQUIRE THE PACKAGE //\n  /////////////////////////\n\n  ///////////////////////////\n  // SET UP THE CONNECTION //\n  ///////////////////////////\n\n  var connectionDetails = { redis: sails.REDIS_QUEUE };\n\n  //////////////////////////////\n  // DEFINE YOUR WORKER TASKS //\n  //////////////////////////////\n\n  sails.JOBS = {};\n  sails.JOBS['test'] = {\n    perform: function perform(a, b, callback) {\n      callback(undefined, true);\n    }\n  };\n  sails.JOBS['push'] = {\n    perform: function perform(params, b, callback) {\n      sails.controllers.push._send(params).then(function (results) {\n        callback(undefined, results);\n      }).catch(function (error) {\n        callback(error, undefined);\n      });\n    }\n  };\n  var jobs = sails.JOBS;\n\n  var multiWorker = new (require('node-resque').multiWorker)({\n    connection: connectionDetails,\n    queues: ['SLOW_QUEUE'],\n    minTaskProcessors: Number(process.env.NR_MIN_TASKS),\n    maxTaskProcessors: Number(process.env.NR_MAX_TASKS),\n    checkTimeout: Number(process.env.NR_TIMEOUT),\n    timeout: Number(process.env.NR_TIMEOUT),\n    name: 'resque@' + sails.HOST_NAME,\n    maxEventLoopDelay: Number(process.env.NR_MAX_LOOPDELAY),\n    toDisconnectProcessors: Boolean(process.env.NR_DISCONNECT_PROCESSORS)\n  }, jobs);\n\n  // multiWorker.on('success', (workerId, queue, job, result) => {\n  // })\n  // normal worker emitters\n  // multiWorker.on('start', workerId => {\n  //   console.log(\"worker[\"+workerId+\"] started\");\n  // })\n  // multiWorker.on('end',               function(workerId){                      console.log(\"worker[\"+workerId+\"] ended\"); })\n  // multiWorker.on('cleaning_worker',   function(workerId, worker, pid){         console.log(\"cleaning old worker \" + worker); })\n  // multiWorker.on('poll',              function(workerId, queue){               console.log(\"worker[\"+workerId+\"] polling \" + queue); })\n  // multiWorker.on('job',               function(workerId, queue, job){          console.log(\"worker[\"+workerId+\"] working job \" + queue + \" \" + JSON.stringify(job)); })\n  // multiWorker.on('reEnqueue',         function(workerId, queue, job, plugin){  console.log(\"worker[\"+workerId+\"] reEnqueue job (\" + plugin + \") \" + queue + \" \" + JSON.stringify(job)); })\n\n  // if (env == 'staging' || env == 'production') {\n  // const rtg   = require('url').parse(process.env.REDISTOGO_URL)\n  // const client = require('redis').createClient(rtg.port, rtg.hostname)\n  // client.auth(rtg.auth.split(':')[1])\n\n  // client.subscribe('instances');\n\n  // client.on('message', (channel, message) => {\n  //   console.log(message)\n  // })\n\n  // client.publish('instances', 'start')\n\n  // multiWorker.on('failure',           function(workerId, queue, job, failure){ console.log(\"worker[\"+workerId+\"] job failure \" + queue + \" \" + JSON.stringify(job) + \" >> \" + failure); })\n  // multiWorker.on('error',             function(workerId, queue, job, error){   console.log(\"worker[\"+workerId+\"] error \" + queue + \" \" + JSON.stringify(job) + \" >> \" + error); })\n  // multiWorker.on('pause',             function(workerId){                      console.log(\"worker[\"+workerId+\"] paused\"); })\n\n  // multiWorker.on('internalError',     function(error){                         console.log(error); })\n  // multiWorker.on('multiWorkerAction', function(verb, delay){                   console.log(\"*** checked for worker status: \" + verb + \" (event loop delay: \" + delay + \"ms)\");\n  // });\n\n  multiWorker.start();\n\n  sails.log.info('resque\\t\\t=>\\t(connected)');\n\n  return require('bluebird').resolve();\n}\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInJlc3F1ZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztRQUtnQjtBQUFULFNBQVMsS0FBVCxHQUFpQjs7Ozs7Ozs7OztBQVV0QixNQUFNLG9CQUFvQixFQUFFLE9BQU8sTUFBTSxXQUFOLEVBQTdCOzs7Ozs7QUFWZ0IsT0FnQnRCLENBQU0sSUFBTixHQUFhLEVBQWIsQ0FoQnNCO0FBaUJ0QixRQUFNLElBQU4sQ0FBVyxNQUFYLElBQXFCO0FBQ25CLGFBQVMsaUJBQVMsQ0FBVCxFQUFZLENBQVosRUFBZSxRQUFmLEVBQXlCO0FBQ2hDLGVBQVMsU0FBVCxFQUFvQixJQUFwQixFQURnQztLQUF6QjtHQURYLENBakJzQjtBQXNCdEIsUUFBTSxJQUFOLENBQVcsTUFBWCxJQUFxQjtBQUNuQixhQUFTLGlCQUFTLE1BQVQsRUFBaUIsQ0FBakIsRUFBb0IsUUFBcEIsRUFBOEI7QUFDckMsWUFBTSxXQUFOLENBQWtCLElBQWxCLENBQXVCLEtBQXZCLENBQTZCLE1BQTdCLEVBQ0MsSUFERCxDQUNRLG1CQUFXO0FBQ2pCLGlCQUFTLFNBQVQsRUFBb0IsT0FBcEIsRUFEaUI7T0FBWCxDQURSLENBSUMsS0FKRCxDQUlTLGlCQUFTO0FBQ2hCLGlCQUFTLEtBQVQsRUFBZ0IsU0FBaEIsRUFEZ0I7T0FBVCxDQUpULENBRHFDO0tBQTlCO0dBRFgsQ0F0QnNCO0FBaUN0QixNQUFNLE9BQU8sTUFBTSxJQUFOLENBakNTOztBQW1DdEIsTUFBTSxjQUFjLEtBQUksT0FBQyxDQUFRLGFBQVIsQ0FBRCxDQUF5QixXQUF6QixDQUFKLENBQXlDO0FBQzNELGdCQUFZLGlCQUFaO0FBQ0EsWUFBUSxDQUFDLFlBQUQsQ0FBUjtBQUNBLHVCQUFxQixPQUFPLFFBQVEsR0FBUixDQUFZLFlBQVosQ0FBNUI7QUFDQSx1QkFBcUIsT0FBTyxRQUFRLEdBQVIsQ0FBWSxZQUFaLENBQTVCO0FBQ0Esa0JBQXFCLE9BQU8sUUFBUSxHQUFSLENBQVksVUFBWixDQUE1QjtBQUNBLGFBQVMsT0FBTyxRQUFRLEdBQVIsQ0FBWSxVQUFaLENBQWhCO0FBQ0EsVUFBTSxZQUFZLE1BQU0sU0FBTjtBQUNsQix1QkFBcUIsT0FBTyxRQUFRLEdBQVIsQ0FBWSxnQkFBWixDQUE1QjtBQUNBLDRCQUF3QixRQUFRLFFBQVEsR0FBUixDQUFZLHdCQUFaLENBQWhDO0dBVGtCLEVBVWpCLElBVmlCLENBQWQ7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBbkNnQixhQWtGdEIsQ0FBWSxLQUFaLEdBbEZzQjs7QUFvRnRCLFFBQU0sR0FBTixDQUFVLElBQVYsQ0FBZSwyQkFBZixFQXBGc0I7O0FBc0Z0QixTQUFPLFFBQVEsVUFBUixFQUFvQixPQUFwQixFQUFQLENBdEZzQjtDQUFqQiIsImZpbGUiOiJyZXNxdWUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuXG5cblxuZXhwb3J0IGZ1bmN0aW9uIHNldHVwKCkge1xuXG4gIC8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy9cbiAgLy8gUkVRVUlSRSBUSEUgUEFDS0FHRSAvL1xuICAvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vXG5cbiAgLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vXG4gIC8vIFNFVCBVUCBUSEUgQ09OTkVDVElPTiAvL1xuICAvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy9cblxuICBjb25zdCBjb25uZWN0aW9uRGV0YWlscyA9IHsgcmVkaXM6IHNhaWxzLlJFRElTX1FVRVVFIH1cblxuICAvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy9cbiAgLy8gREVGSU5FIFlPVVIgV09SS0VSIFRBU0tTIC8vXG4gIC8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vL1xuXG4gIHNhaWxzLkpPQlMgPSB7fVxuICBzYWlscy5KT0JTWyd0ZXN0J10gPSB7XG4gICAgcGVyZm9ybTogZnVuY3Rpb24oYSwgYiwgY2FsbGJhY2spIHtcbiAgICAgIGNhbGxiYWNrKHVuZGVmaW5lZCwgdHJ1ZSlcbiAgICB9XG4gIH1cbiAgc2FpbHMuSk9CU1sncHVzaCddID0ge1xuICAgIHBlcmZvcm06IGZ1bmN0aW9uKHBhcmFtcywgYiwgY2FsbGJhY2spIHtcbiAgICAgIHNhaWxzLmNvbnRyb2xsZXJzLnB1c2guX3NlbmQocGFyYW1zKVxuICAgICAgLnRoZW4gKCByZXN1bHRzID0+IHtcbiAgICAgICAgY2FsbGJhY2sodW5kZWZpbmVkLCByZXN1bHRzKVxuICAgICAgfSlcbiAgICAgIC5jYXRjaCAoIGVycm9yID0+IHtcbiAgICAgICAgY2FsbGJhY2soZXJyb3IsIHVuZGVmaW5lZClcbiAgICAgIH0pXG4gICAgfVxuICB9XG4gIGNvbnN0IGpvYnMgPSBzYWlscy5KT0JTXG5cbiAgY29uc3QgbXVsdGlXb3JrZXIgPSBuZXcgKHJlcXVpcmUoJ25vZGUtcmVzcXVlJykpLm11bHRpV29ya2VyKHtcbiAgICBjb25uZWN0aW9uOiBjb25uZWN0aW9uRGV0YWlscywgXG4gICAgcXVldWVzOiBbJ1NMT1dfUVVFVUUnXSxcbiAgICBtaW5UYXNrUHJvY2Vzc29yczogICBOdW1iZXIocHJvY2Vzcy5lbnYuTlJfTUlOX1RBU0tTKSxcbiAgICBtYXhUYXNrUHJvY2Vzc29yczogICBOdW1iZXIocHJvY2Vzcy5lbnYuTlJfTUFYX1RBU0tTKSxcbiAgICBjaGVja1RpbWVvdXQ6ICAgICAgICBOdW1iZXIocHJvY2Vzcy5lbnYuTlJfVElNRU9VVCksXG4gICAgdGltZW91dDogTnVtYmVyKHByb2Nlc3MuZW52Lk5SX1RJTUVPVVQpLFxuICAgIG5hbWU6ICdyZXNxdWVAJyArIHNhaWxzLkhPU1RfTkFNRSxcbiAgICBtYXhFdmVudExvb3BEZWxheTogICBOdW1iZXIocHJvY2Vzcy5lbnYuTlJfTUFYX0xPT1BERUxBWSksICBcbiAgICB0b0Rpc2Nvbm5lY3RQcm9jZXNzb3JzOiBCb29sZWFuKHByb2Nlc3MuZW52Lk5SX0RJU0NPTk5FQ1RfUFJPQ0VTU09SUyksXG4gIH0sIGpvYnMpO1xuXG5cbiAgLy8gbXVsdGlXb3JrZXIub24oJ3N1Y2Nlc3MnLCAod29ya2VySWQsIHF1ZXVlLCBqb2IsIHJlc3VsdCkgPT4ge1xuICAvLyB9KVxuICAvLyBub3JtYWwgd29ya2VyIGVtaXR0ZXJzXG4gIC8vIG11bHRpV29ya2VyLm9uKCdzdGFydCcsIHdvcmtlcklkID0+IHtcbiAgLy8gICBjb25zb2xlLmxvZyhcIndvcmtlcltcIit3b3JrZXJJZCtcIl0gc3RhcnRlZFwiKTsgXG4gIC8vIH0pIFxuICAvLyBtdWx0aVdvcmtlci5vbignZW5kJywgICAgICAgICAgICAgICBmdW5jdGlvbih3b3JrZXJJZCl7ICAgICAgICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwid29ya2VyW1wiK3dvcmtlcklkK1wiXSBlbmRlZFwiKTsgfSlcbiAgLy8gbXVsdGlXb3JrZXIub24oJ2NsZWFuaW5nX3dvcmtlcicsICAgZnVuY3Rpb24od29ya2VySWQsIHdvcmtlciwgcGlkKXsgICAgICAgICBjb25zb2xlLmxvZyhcImNsZWFuaW5nIG9sZCB3b3JrZXIgXCIgKyB3b3JrZXIpOyB9KVxuICAvLyBtdWx0aVdvcmtlci5vbigncG9sbCcsICAgICAgICAgICAgICBmdW5jdGlvbih3b3JrZXJJZCwgcXVldWUpeyAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwid29ya2VyW1wiK3dvcmtlcklkK1wiXSBwb2xsaW5nIFwiICsgcXVldWUpOyB9KVxuICAvLyBtdWx0aVdvcmtlci5vbignam9iJywgICAgICAgICAgICAgICBmdW5jdGlvbih3b3JrZXJJZCwgcXVldWUsIGpvYil7ICAgICAgICAgIGNvbnNvbGUubG9nKFwid29ya2VyW1wiK3dvcmtlcklkK1wiXSB3b3JraW5nIGpvYiBcIiArIHF1ZXVlICsgXCIgXCIgKyBKU09OLnN0cmluZ2lmeShqb2IpKTsgfSlcbiAgLy8gbXVsdGlXb3JrZXIub24oJ3JlRW5xdWV1ZScsICAgICAgICAgZnVuY3Rpb24od29ya2VySWQsIHF1ZXVlLCBqb2IsIHBsdWdpbil7ICBjb25zb2xlLmxvZyhcIndvcmtlcltcIit3b3JrZXJJZCtcIl0gcmVFbnF1ZXVlIGpvYiAoXCIgKyBwbHVnaW4gKyBcIikgXCIgKyBxdWV1ZSArIFwiIFwiICsgSlNPTi5zdHJpbmdpZnkoam9iKSk7IH0pXG5cbiAgLy8gaWYgKGVudiA9PSAnc3RhZ2luZycgfHwgZW52ID09ICdwcm9kdWN0aW9uJykge1xuICAvLyBjb25zdCBydGcgICA9IHJlcXVpcmUoJ3VybCcpLnBhcnNlKHByb2Nlc3MuZW52LlJFRElTVE9HT19VUkwpXG4gIC8vIGNvbnN0IGNsaWVudCA9IHJlcXVpcmUoJ3JlZGlzJykuY3JlYXRlQ2xpZW50KHJ0Zy5wb3J0LCBydGcuaG9zdG5hbWUpXG4gIC8vIGNsaWVudC5hdXRoKHJ0Zy5hdXRoLnNwbGl0KCc6JylbMV0pXG5cbiAgLy8gY2xpZW50LnN1YnNjcmliZSgnaW5zdGFuY2VzJyk7XG5cbiAgLy8gY2xpZW50Lm9uKCdtZXNzYWdlJywgKGNoYW5uZWwsIG1lc3NhZ2UpID0+IHtcbiAgLy8gICBjb25zb2xlLmxvZyhtZXNzYWdlKVxuICAvLyB9KVxuXG4gIC8vIGNsaWVudC5wdWJsaXNoKCdpbnN0YW5jZXMnLCAnc3RhcnQnKVxuXG5cbiAgLy8gbXVsdGlXb3JrZXIub24oJ2ZhaWx1cmUnLCAgICAgICAgICAgZnVuY3Rpb24od29ya2VySWQsIHF1ZXVlLCBqb2IsIGZhaWx1cmUpeyBjb25zb2xlLmxvZyhcIndvcmtlcltcIit3b3JrZXJJZCtcIl0gam9iIGZhaWx1cmUgXCIgKyBxdWV1ZSArIFwiIFwiICsgSlNPTi5zdHJpbmdpZnkoam9iKSArIFwiID4+IFwiICsgZmFpbHVyZSk7IH0pXG4gIC8vIG11bHRpV29ya2VyLm9uKCdlcnJvcicsICAgICAgICAgICAgIGZ1bmN0aW9uKHdvcmtlcklkLCBxdWV1ZSwgam9iLCBlcnJvcil7ICAgY29uc29sZS5sb2coXCJ3b3JrZXJbXCIrd29ya2VySWQrXCJdIGVycm9yIFwiICsgcXVldWUgKyBcIiBcIiArIEpTT04uc3RyaW5naWZ5KGpvYikgKyBcIiA+PiBcIiArIGVycm9yKTsgfSlcbiAgLy8gbXVsdGlXb3JrZXIub24oJ3BhdXNlJywgICAgICAgICAgICAgZnVuY3Rpb24od29ya2VySWQpeyAgICAgICAgICAgICAgICAgICAgICBjb25zb2xlLmxvZyhcIndvcmtlcltcIit3b3JrZXJJZCtcIl0gcGF1c2VkXCIpOyB9KVxuXG4gIC8vIG11bHRpV29ya2VyLm9uKCdpbnRlcm5hbEVycm9yJywgICAgIGZ1bmN0aW9uKGVycm9yKXsgICAgICAgICAgICAgICAgICAgICAgICAgY29uc29sZS5sb2coZXJyb3IpOyB9KVxuICAvLyBtdWx0aVdvcmtlci5vbignbXVsdGlXb3JrZXJBY3Rpb24nLCBmdW5jdGlvbih2ZXJiLCBkZWxheSl7ICAgICAgICAgICAgICAgICAgIGNvbnNvbGUubG9nKFwiKioqIGNoZWNrZWQgZm9yIHdvcmtlciBzdGF0dXM6IFwiICsgdmVyYiArIFwiIChldmVudCBsb29wIGRlbGF5OiBcIiArIGRlbGF5ICsgXCJtcylcIik7IFxuICAvLyB9KTtcblxuICBtdWx0aVdvcmtlci5zdGFydCgpIFxuXG4gIHNhaWxzLmxvZy5pbmZvKCdyZXNxdWVcXHRcXHQ9PlxcdChjb25uZWN0ZWQpJylcblxuICByZXR1cm4gcmVxdWlyZSgnYmx1ZWJpcmQnKS5yZXNvbHZlKClcbn1cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cblxuXG5cbiJdfQ==",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "resque.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;QAKgB;AAAT,SAAS,KAAT,GAAiB;;;;;;;;;;AAUtB,MAAM,oBAAoB,EAAE,OAAO,MAAM,WAAN,EAA7B;;;;;;AAVgB,OAgBtB,CAAM,IAAN,GAAa,EAAb,CAhBsB;AAiBtB,QAAM,IAAN,CAAW,MAAX,IAAqB;AACnB,aAAS,iBAAS,CAAT,EAAY,CAAZ,EAAe,QAAf,EAAyB;AAChC,eAAS,SAAT,EAAoB,IAApB,EADgC;KAAzB;GADX,CAjBsB;AAsBtB,QAAM,IAAN,CAAW,MAAX,IAAqB;AACnB,aAAS,iBAAS,MAAT,EAAiB,CAAjB,EAAoB,QAApB,EAA8B;AACrC,YAAM,WAAN,CAAkB,IAAlB,CAAuB,KAAvB,CAA6B,MAA7B,EACC,IADD,CACQ,mBAAW;AACjB,iBAAS,SAAT,EAAoB,OAApB,EADiB;OAAX,CADR,CAIC,KAJD,CAIS,iBAAS;AAChB,iBAAS,KAAT,EAAgB,SAAhB,EADgB;OAAT,CAJT,CADqC;KAA9B;GADX,CAtBsB;AAiCtB,MAAM,OAAO,MAAM,IAAN,CAjCS;;AAmCtB,MAAM,cAAc,KAAI,OAAC,CAAQ,aAAR,CAAD,CAAyB,WAAzB,CAAJ,CAAyC;AAC3D,gBAAY,iBAAZ;AACA,YAAQ,CAAC,YAAD,CAAR;AACA,uBAAqB,OAAO,QAAQ,GAAR,CAAY,YAAZ,CAA5B;AACA,uBAAqB,OAAO,QAAQ,GAAR,CAAY,YAAZ,CAA5B;AACA,kBAAqB,OAAO,QAAQ,GAAR,CAAY,UAAZ,CAA5B;AACA,aAAS,OAAO,QAAQ,GAAR,CAAY,UAAZ,CAAhB;AACA,UAAM,YAAY,MAAM,SAAN;AAClB,uBAAqB,OAAO,QAAQ,GAAR,CAAY,gBAAZ,CAA5B;AACA,4BAAwB,QAAQ,QAAQ,GAAR,CAAY,wBAAZ,CAAhC;GATkB,EAUjB,IAViB,CAAd;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAnCgB,aAkFtB,CAAY,KAAZ,GAlFsB;;AAoFtB,QAAM,GAAN,CAAU,IAAV,CAAe,2BAAf,EApFsB;;AAsFtB,SAAO,QAAQ,UAAR,EAAoB,OAApB,EAAP,CAtFsB;CAAjB",
+      "file": "resque.js",
+      "sourcesContent": [
+        "\n\n\n\n\nexport function setup() {\n\n  /////////////////////////\n  // REQUIRE THE PACKAGE //\n  /////////////////////////\n\n  ///////////////////////////\n  // SET UP THE CONNECTION //\n  ///////////////////////////\n\n  const connectionDetails = { redis: sails.REDIS_QUEUE }\n\n  //////////////////////////////\n  // DEFINE YOUR WORKER TASKS //\n  //////////////////////////////\n\n  sails.JOBS = {}\n  sails.JOBS['test'] = {\n    perform: function(a, b, callback) {\n      callback(undefined, true)\n    }\n  }\n  sails.JOBS['push'] = {\n    perform: function(params, b, callback) {\n      sails.controllers.push._send(params)\n      .then ( results => {\n        callback(undefined, results)\n      })\n      .catch ( error => {\n        callback(error, undefined)\n      })\n    }\n  }\n  const jobs = sails.JOBS\n\n  const multiWorker = new (require('node-resque')).multiWorker({\n    connection: connectionDetails, \n    queues: ['SLOW_QUEUE'],\n    minTaskProcessors:   Number(process.env.NR_MIN_TASKS),\n    maxTaskProcessors:   Number(process.env.NR_MAX_TASKS),\n    checkTimeout:        Number(process.env.NR_TIMEOUT),\n    timeout: Number(process.env.NR_TIMEOUT),\n    name: 'resque@' + sails.HOST_NAME,\n    maxEventLoopDelay:   Number(process.env.NR_MAX_LOOPDELAY),  \n    toDisconnectProcessors: Boolean(process.env.NR_DISCONNECT_PROCESSORS),\n  }, jobs);\n\n\n  // multiWorker.on('success', (workerId, queue, job, result) => {\n  // })\n  // normal worker emitters\n  // multiWorker.on('start', workerId => {\n  //   console.log(\"worker[\"+workerId+\"] started\"); \n  // }) \n  // multiWorker.on('end',               function(workerId){                      console.log(\"worker[\"+workerId+\"] ended\"); })\n  // multiWorker.on('cleaning_worker',   function(workerId, worker, pid){         console.log(\"cleaning old worker \" + worker); })\n  // multiWorker.on('poll',              function(workerId, queue){               console.log(\"worker[\"+workerId+\"] polling \" + queue); })\n  // multiWorker.on('job',               function(workerId, queue, job){          console.log(\"worker[\"+workerId+\"] working job \" + queue + \" \" + JSON.stringify(job)); })\n  // multiWorker.on('reEnqueue',         function(workerId, queue, job, plugin){  console.log(\"worker[\"+workerId+\"] reEnqueue job (\" + plugin + \") \" + queue + \" \" + JSON.stringify(job)); })\n\n  // if (env == 'staging' || env == 'production') {\n  // const rtg   = require('url').parse(process.env.REDISTOGO_URL)\n  // const client = require('redis').createClient(rtg.port, rtg.hostname)\n  // client.auth(rtg.auth.split(':')[1])\n\n  // client.subscribe('instances');\n\n  // client.on('message', (channel, message) => {\n  //   console.log(message)\n  // })\n\n  // client.publish('instances', 'start')\n\n\n  // multiWorker.on('failure',           function(workerId, queue, job, failure){ console.log(\"worker[\"+workerId+\"] job failure \" + queue + \" \" + JSON.stringify(job) + \" >> \" + failure); })\n  // multiWorker.on('error',             function(workerId, queue, job, error){   console.log(\"worker[\"+workerId+\"] error \" + queue + \" \" + JSON.stringify(job) + \" >> \" + error); })\n  // multiWorker.on('pause',             function(workerId){                      console.log(\"worker[\"+workerId+\"] paused\"); })\n\n  // multiWorker.on('internalError',     function(error){                         console.log(error); })\n  // multiWorker.on('multiWorkerAction', function(verb, delay){                   console.log(\"*** checked for worker status: \" + verb + \" (event loop delay: \" + delay + \"ms)\"); \n  // });\n\n  multiWorker.start() \n\n  sails.log.info('resque\\t\\t=>\\t(connected)')\n\n  return require('bluebird').resolve()\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+      ]
+    },
+    "mtime": 1460308437000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/services/sockets.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [
+            "setup"
+          ],
+          "specifiers": [
+            {
+              "kind": "local",
+              "local": "setup",
+              "exported": "setup"
+            }
+          ]
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/services/sockets.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/services/sockets.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "sockets.js",
+      "sourceFileName": "sockets.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "sockets"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.setup = setup;\n/**\n * SOCKET FRAMEWORK\n */\nfunction setup() {\n\n  sails.log.info('socket.io\\t\\t=>\\t(connected)');\n\n  sails.doOnce = true;\n\n  console.log('mark');\n  sails.io.sockets.on('connect', function (socket) {\n    console.log('mark2');\n  });\n  sails.io.on('connect', function (socket) {\n    console.log('mark1');\n    // this code is ran once because the first connection is coming\n    // from the server itself.\n    if (sails.doOnce) {\n      sails.doOnce = false;\n      // clear the screen as this is the last thing on the server init list\n      require('cli-clear')();\n      sails.log.info('Hello, World.');\n    }\n  });\n\n  return require('bluebird').resolve();\n}\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNvY2tldHMuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7UUFHZ0I7Ozs7QUFBVCxTQUFTLEtBQVQsR0FBaUI7O0FBRXRCLFFBQU0sR0FBTixDQUFVLElBQVYsQ0FBZSw4QkFBZixFQUZzQjs7QUFJdEIsUUFBTSxNQUFOLEdBQWUsSUFBZixDQUpzQjs7QUFNeEIsVUFBUSxHQUFSLENBQVksTUFBWixFQU53QjtBQU94QixRQUFNLEVBQU4sQ0FBUyxPQUFULENBQWlCLEVBQWpCLENBQW9CLFNBQXBCLEVBQStCLGtCQUFVO0FBQ3ZDLFlBQVEsR0FBUixDQUFZLE9BQVosRUFEdUM7R0FBVixDQUEvQixDQVB3QjtBQVV0QixRQUFNLEVBQU4sQ0FBUyxFQUFULENBQVksU0FBWixFQUF1QixVQUFTLE1BQVQsRUFBaUI7QUFDMUMsWUFBUSxHQUFSLENBQVksT0FBWjs7O0FBRDBDLFFBSWxDLE1BQU0sTUFBTixFQUFjO0FBQ2hCLFlBQU0sTUFBTixHQUFlLEtBQWY7O0FBRGdCLGFBR2hCLENBQVEsV0FBUixJQUhnQjtBQUloQixZQUFNLEdBQU4sQ0FBVSxJQUFWLENBQWUsZUFBZixFQUpnQjtLQUFsQjtHQUpxQixDQUF2QixDQVZzQjs7QUFzQnRCLFNBQU8sUUFBUSxVQUFSLEVBQW9CLE9BQXBCLEVBQVAsQ0F0QnNCO0NBQWpCIiwiZmlsZSI6InNvY2tldHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIFNPQ0tFVCBGUkFNRVdPUktcbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIHNldHVwKCkge1xuXG4gIHNhaWxzLmxvZy5pbmZvKCdzb2NrZXQuaW9cXHRcXHQ9PlxcdChjb25uZWN0ZWQpJylcblxuICBzYWlscy5kb09uY2UgPSB0cnVlXG5cbmNvbnNvbGUubG9nKCdtYXJrJylcbnNhaWxzLmlvLnNvY2tldHMub24oJ2Nvbm5lY3QnLCBzb2NrZXQgPT4ge1xuICBjb25zb2xlLmxvZygnbWFyazInKVxufSlcbiAgc2FpbHMuaW8ub24oJ2Nvbm5lY3QnLCBmdW5jdGlvbihzb2NrZXQpIHtcbmNvbnNvbGUubG9nKCdtYXJrMScpXG4gICAgLy8gdGhpcyBjb2RlIGlzIHJhbiBvbmNlIGJlY2F1c2UgdGhlIGZpcnN0IGNvbm5lY3Rpb24gaXMgY29taW5nXG4gICAgLy8gZnJvbSB0aGUgc2VydmVyIGl0c2VsZi5cbiAgICBpZiAoc2FpbHMuZG9PbmNlKSB7IFxuICAgICAgc2FpbHMuZG9PbmNlID0gZmFsc2VcbiAgICAgIC8vIGNsZWFyIHRoZSBzY3JlZW4gYXMgdGhpcyBpcyB0aGUgbGFzdCB0aGluZyBvbiB0aGUgc2VydmVyIGluaXQgbGlzdFxuICAgICAgcmVxdWlyZSgnY2xpLWNsZWFyJykoKVxuICAgICAgc2FpbHMubG9nLmluZm8oJ0hlbGxvLCBXb3JsZC4nKVxuICAgIH1cbiAgfSlcblxuICByZXR1cm4gcmVxdWlyZSgnYmx1ZWJpcmQnKS5yZXNvbHZlKClcbn0iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "sockets.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;QAGgB;;;;AAAT,SAAS,KAAT,GAAiB;;AAEtB,QAAM,GAAN,CAAU,IAAV,CAAe,8BAAf,EAFsB;;AAItB,QAAM,MAAN,GAAe,IAAf,CAJsB;;AAMxB,UAAQ,GAAR,CAAY,MAAZ,EANwB;AAOxB,QAAM,EAAN,CAAS,OAAT,CAAiB,EAAjB,CAAoB,SAApB,EAA+B,kBAAU;AACvC,YAAQ,GAAR,CAAY,OAAZ,EADuC;GAAV,CAA/B,CAPwB;AAUtB,QAAM,EAAN,CAAS,EAAT,CAAY,SAAZ,EAAuB,UAAS,MAAT,EAAiB;AAC1C,YAAQ,GAAR,CAAY,OAAZ;;;AAD0C,QAIlC,MAAM,MAAN,EAAc;AAChB,YAAM,MAAN,GAAe,KAAf;;AADgB,aAGhB,CAAQ,WAAR,IAHgB;AAIhB,YAAM,GAAN,CAAU,IAAV,CAAe,eAAf,EAJgB;KAAlB;GAJqB,CAAvB,CAVsB;;AAsBtB,SAAO,QAAQ,UAAR,EAAoB,OAApB,EAAP,CAtBsB;CAAjB",
+      "file": "sockets.js",
+      "sourcesContent": [
+        "/**\n * SOCKET FRAMEWORK\n */\nexport function setup() {\n\n  sails.log.info('socket.io\\t\\t=>\\t(connected)')\n\n  sails.doOnce = true\n\nconsole.log('mark')\nsails.io.sockets.on('connect', socket => {\n  console.log('mark2')\n})\n  sails.io.on('connect', function(socket) {\nconsole.log('mark1')\n    // this code is ran once because the first connection is coming\n    // from the server itself.\n    if (sails.doOnce) { \n      sails.doOnce = false\n      // clear the screen as this is the last thing on the server init list\n      require('cli-clear')()\n      sails.log.info('Hello, World.')\n    }\n  })\n\n  return require('bluebird').resolve()\n}"
+      ]
+    },
+    "mtime": 1460308236000
+  },
+  "{\"filename\":\"/Users/drewkiino/STServer/api/policies/sessionAuth.js\",\"env\":{},\"retainLines\":false,\"highlightCode\":true,\"suppressDeprecationMessages\":false,\"presets\":[],\"plugins\":[[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],null],[[],{\"async\":false,\"asyncGenerators\":false}]],\"ignore\":[],\"code\":true,\"metadata\":true,\"ast\":true,\"comments\":true,\"compact\":\"auto\",\"minified\":false,\"babelrc\":true,\"sourceType\":\"module\",\"moduleIds\":false,\"passPerPreset\":false}:6.7.6:development": {
+    "metadata": {
+      "usedHelpers": [],
+      "marked": [],
+      "modules": {
+        "imports": [],
+        "exports": {
+          "exported": [],
+          "specifiers": []
+        }
+      }
+    },
+    "options": {
+      "filename": "/Users/drewkiino/STServer/api/policies/sessionAuth.js",
+      "filenameRelative": "/Users/drewkiino/STServer/api/policies/sessionAuth.js",
+      "env": {},
+      "retainLines": false,
+      "highlightCode": true,
+      "suppressDeprecationMessages": false,
+      "presets": [],
+      "plugins": [
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          null
+        ],
+        [
+          [],
+          {
+            "async": false,
+            "asyncGenerators": false
+          }
+        ]
+      ],
+      "ignore": [],
+      "code": true,
+      "metadata": true,
+      "ast": false,
+      "comments": true,
+      "compact": "auto",
+      "minified": false,
+      "sourceMap": "both",
+      "sourceMaps": "both",
+      "sourceMapTarget": "sessionAuth.js",
+      "sourceFileName": "sessionAuth.js",
+      "babelrc": false,
+      "sourceType": "module",
+      "moduleIds": false,
+      "passPerPreset": false,
+      "basename": "sessionAuth"
+    },
+    "ignored": false,
+    "code": "'use strict';\n\n/**\n * sessionAuth\n *\n * @module      :: Policy\n * @description :: Simple policy to allow any authenticated user\n *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`\n * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies\n *\n */\nmodule.exports = function (req, res, next) {\n\n  // User is allowed, proceed to the next policy,\n  // or if this is the last policy, the controller\n  if (req.session.authenticated) {\n    return next();\n  }\n\n  // User is not allowed\n  // (default res.forbidden() behavior can be overridden in `config/403.js`)\n  return res.forbidden('You are not permitted to perform this action.');\n};\n//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNlc3Npb25BdXRoLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBU0EsT0FBTyxPQUFQLEdBQWlCLFVBQVMsR0FBVCxFQUFjLEdBQWQsRUFBbUIsSUFBbkIsRUFBeUI7Ozs7QUFJeEMsTUFBSSxJQUFJLE9BQUosQ0FBWSxhQUFaLEVBQTJCO0FBQzdCLFdBQU8sTUFBUCxDQUQ2QjtHQUEvQjs7OztBQUp3QyxTQVVqQyxJQUFJLFNBQUosQ0FBYywrQ0FBZCxDQUFQLENBVndDO0NBQXpCIiwiZmlsZSI6InNlc3Npb25BdXRoLmpzIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBzZXNzaW9uQXV0aFxuICpcbiAqIEBtb2R1bGUgICAgICA6OiBQb2xpY3lcbiAqIEBkZXNjcmlwdGlvbiA6OiBTaW1wbGUgcG9saWN5IHRvIGFsbG93IGFueSBhdXRoZW50aWNhdGVkIHVzZXJcbiAqICAgICAgICAgICAgICAgICBBc3N1bWVzIHRoYXQgeW91ciBsb2dpbiBhY3Rpb24gaW4gb25lIG9mIHlvdXIgY29udHJvbGxlcnMgc2V0cyBgcmVxLnNlc3Npb24uYXV0aGVudGljYXRlZCA9IHRydWU7YFxuICogQGRvY3MgICAgICAgIDo6IGh0dHA6Ly9zYWlsc2pzLm9yZy8jIS9kb2N1bWVudGF0aW9uL2NvbmNlcHRzL1BvbGljaWVzXG4gKlxuICovXG5tb2R1bGUuZXhwb3J0cyA9IGZ1bmN0aW9uKHJlcSwgcmVzLCBuZXh0KSB7XG5cbiAgLy8gVXNlciBpcyBhbGxvd2VkLCBwcm9jZWVkIHRvIHRoZSBuZXh0IHBvbGljeSwgXG4gIC8vIG9yIGlmIHRoaXMgaXMgdGhlIGxhc3QgcG9saWN5LCB0aGUgY29udHJvbGxlclxuICBpZiAocmVxLnNlc3Npb24uYXV0aGVudGljYXRlZCkge1xuICAgIHJldHVybiBuZXh0KCk7XG4gIH1cblxuICAvLyBVc2VyIGlzIG5vdCBhbGxvd2VkXG4gIC8vIChkZWZhdWx0IHJlcy5mb3JiaWRkZW4oKSBiZWhhdmlvciBjYW4gYmUgb3ZlcnJpZGRlbiBpbiBgY29uZmlnLzQwMy5qc2ApXG4gIHJldHVybiByZXMuZm9yYmlkZGVuKCdZb3UgYXJlIG5vdCBwZXJtaXR0ZWQgdG8gcGVyZm9ybSB0aGlzIGFjdGlvbi4nKTtcbn07XG4iXX0=",
+    "ast": null,
+    "map": {
+      "version": 3,
+      "sources": [
+        "sessionAuth.js"
+      ],
+      "names": [],
+      "mappings": ";;;;;;;;;;;AASA,OAAO,OAAP,GAAiB,UAAS,GAAT,EAAc,GAAd,EAAmB,IAAnB,EAAyB;;;;AAIxC,MAAI,IAAI,OAAJ,CAAY,aAAZ,EAA2B;AAC7B,WAAO,MAAP,CAD6B;GAA/B;;;;AAJwC,SAUjC,IAAI,SAAJ,CAAc,+CAAd,CAAP,CAVwC;CAAzB",
+      "file": "sessionAuth.js",
+      "sourcesContent": [
+        "/**\n * sessionAuth\n *\n * @module      :: Policy\n * @description :: Simple policy to allow any authenticated user\n *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`\n * @docs        :: http://sailsjs.org/#!/documentation/concepts/Policies\n *\n */\nmodule.exports = function(req, res, next) {\n\n  // User is allowed, proceed to the next policy, \n  // or if this is the last policy, the controller\n  if (req.session.authenticated) {\n    return next();\n  }\n\n  // User is not allowed\n  // (default res.forbidden() behavior can be overridden in `config/403.js`)\n  return res.forbidden('You are not permitted to perform this action.');\n};\n"
+      ]
+    },
+    "mtime": 1449261422000
+  }
+}

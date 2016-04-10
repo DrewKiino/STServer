@@ -53,7 +53,6 @@ module.exports.sockets = {
   adapter: 'socket.io-redis',
   url: process.env.REDISTOGO_URL,
 
-
  /***************************************************************************
   *                                                                          *
   * Whether to expose a 'get /__getcookie' route with CORS support that sets *
